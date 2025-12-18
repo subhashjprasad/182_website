@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight, Bookmark, ExternalLink, Eye, Sparkles } from 'lucide-react';
 import type { Post } from '../../lib/types';
 import { useBookmarksStore } from '../../store/useBookmarksStore';
-import { getAuthorDisplayName, getEdUrl } from '../../lib/utils';
+import { getAuthorDisplayName, getEdUrl, resolveLLMFromPost } from '../../lib/utils';
 
 interface QuickViewProps {
   post: Post | null;
@@ -148,7 +148,7 @@ export function QuickView({ post, onClose, onNext, onPrevious, hasNext, hasPrevi
 
             <div className="flex flex-wrap gap-2 mb-4">
               <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-sky-500 text-white rounded-lg text-sm font-bold shadow-sm">
-                {post.llm_info.primary_llm}
+                {resolveLLMFromPost(post)}
               </span>
               {post.llm_info.variant && (
                 <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg text-sm font-medium">
@@ -305,21 +305,38 @@ export function QuickView({ post, onClose, onNext, onPrevious, hasNext, hasPrevi
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
               Tags
             </h3>
-            <div className="flex flex-wrap gap-2">
-              {post.tags.slice(0, 15).map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-1 bg-cyan-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded text-xs"
-                >
-                  {tag}
-                </span>
-              ))}
-              {post.tags.length > 15 && (
-                <span className="px-2.5 py-1 text-gray-500 dark:text-gray-400 text-xs">
-                  +{post.tags.length - 15} more
-                </span>
-              )}
-            </div>
+            {post.tags.filter(tag => {
+              const t = tag.toLowerCase();
+              return t !== 'unknown' && t !== 'other';
+            }).length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {post.tags
+                  .filter(tag => {
+                    const t = tag.toLowerCase();
+                    return t !== 'unknown' && t !== 'other';
+                  })
+                  .slice(0, 15)
+                  .map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2.5 py-1 bg-cyan-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded text-xs"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                {post.tags.filter(tag => {
+                  const t = tag.toLowerCase();
+                  return t !== 'unknown' && t !== 'other';
+                }).length > 15 && (
+                  <span className="px-2.5 py-1 text-gray-500 dark:text-gray-400 text-xs">
+                    +{post.tags.filter(tag => {
+                      const t = tag.toLowerCase();
+                      return t !== 'unknown' && t !== 'other';
+                    }).length - 15} more
+                  </span>
+                )}
+              </div>
+            )}
           </div>
 
           {/* View Full Details Button */}

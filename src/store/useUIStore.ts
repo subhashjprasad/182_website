@@ -31,6 +31,7 @@ interface UIStore {
 const defaultFilters: FilterState = {
   llms: [],
   llmVariants: [],
+  assistants: [],
   taskTypes: [],
   homeworks: [],
   minHighlightScore: 0,

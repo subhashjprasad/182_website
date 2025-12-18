@@ -4,6 +4,7 @@
 import { useMemo } from 'react';
 import Fuse from 'fuse.js';
 import type { Post } from '../lib/types';
+import { resolveLLMFromPost, resolveAssistantFromPost } from '../lib/utils';
 
 export interface SearchMatch {
   key?: string;
@@ -61,16 +62,32 @@ export function useSearchPosts(posts: Post[], query: string): PostWithMatches[] 
  * Get unique values for filter options
  */
 export function useFilterOptions(posts: Post[]) {
+  const sortWithOtherLast = (items: string[]) =>
+    items.sort((a, b) => {
+      const aIsOther = a === 'Other';
+      const bIsOther = b === 'Other';
+      if (aIsOther && !bIsOther) return 1;
+      if (bIsOther && !aIsOther) return -1;
+      return a.localeCompare(b);
+    });
+
   return useMemo(() => {
     const llms = new Set<string>();
     const llmVariants = new Set<string>();
+    const assistants = new Set<string>();
     const taskTypes = new Set<string>();
     const homeworks = new Set<string>();
     const tags = new Set<string>();
 
     posts.forEach(post => {
-      if (post.llm_info.primary_llm) {
-        llms.add(post.llm_info.primary_llm);
+      const resolvedLLM = resolveLLMFromPost(post);
+      if (resolvedLLM) {
+        llms.add(resolvedLLM);
+      }
+
+      const resolvedAssistant = resolveAssistantFromPost(post);
+      if (resolvedAssistant && resolvedAssistant !== 'Other') {
+        assistants.add(resolvedAssistant);
       }
 
       if (post.llm_info.variant) {
@@ -88,12 +105,18 @@ export function useFilterOptions(posts: Post[]) {
         }
       });
 
-      post.tags?.forEach(tag => tags.add(tag));
+      post.tags
+        ?.filter(tag => {
+          const t = tag.toLowerCase();
+          return t !== 'unknown' && t !== 'other';
+        })
+        .forEach(tag => tags.add(tag));
     });
 
     return {
-      llms: Array.from(llms).sort(),
+      llms: sortWithOtherLast(Array.from(llms)),
       llmVariants: Array.from(llmVariants).sort(),
+      assistants: Array.from(assistants).sort(),
       taskTypes: Array.from(taskTypes).sort(),
       homeworks: Array.from(homeworks).sort((a, b) => {
         // Sort hw1, hw2, ..., hw10 numerically

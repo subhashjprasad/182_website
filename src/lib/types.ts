@@ -104,6 +104,7 @@ export interface Insights {
 export interface FilterState {
   llms: string[];
   llmVariants: string[];
+  assistants: string[];
   taskTypes: string[];
   homeworks: string[];
   minHighlightScore: number;

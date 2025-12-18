@@ -134,11 +134,24 @@ def extract_llm_from_title(title: str) -> Dict[str, Any]:
         'assistant_tool': None,
     }
     
-    # Check for known LLMs
-    for llm in config.KNOWN_LLMS:
-        if llm.lower() in title_lower:
-            llm_info['primary_llm'] = llm
+    # Handle common aliases/typos first
+    alias_patterns = [
+        (r'haiku', 'Claude (Haiku)'),
+        (r'claude\s*4\.5\s*haiku', 'Claude (Haiku)'),
+        (r'claude\s*haiku', 'Claude (Haiku)'),
+    ]
+
+    for pattern, canonical in alias_patterns:
+        if re.search(pattern, title_lower):
+            llm_info['primary_llm'] = canonical
             break
+
+    # Check for known LLMs
+    if llm_info['primary_llm'] == 'Unknown':
+        for llm in config.KNOWN_LLMS:
+            if llm.lower() in title_lower:
+                llm_info['primary_llm'] = llm
+                break
     
     # Check for specific versions
     version_patterns = [

@@ -2,6 +2,7 @@
  * Post filtering and sorting utilities
  */
 import type { Post, FilterState } from './types';
+import { resolveLLMFromPost, resolveAssistantFromPost } from './utils';
 
 export type SortOption =
   | 'relevance'
@@ -28,9 +29,19 @@ function normalizeHomework(hw: string): string {
  */
 export function filterPosts(posts: Post[], filters: FilterState): Post[] {
   return posts.filter(post => {
+    const primaryLLM = resolveLLMFromPost(post);
+    const assistant = resolveAssistantFromPost(post);
+
     // LLM filter
     if (filters.llms.length > 0) {
-      if (!filters.llms.includes(post.llm_info.primary_llm)) {
+      if (!filters.llms.includes(primaryLLM)) {
+        return false;
+      }
+    }
+
+    // Assistant/tool filter
+    if (filters.assistants.length > 0) {
+      if (!filters.assistants.includes(assistant)) {
         return false;
       }
     }
@@ -128,7 +139,7 @@ export function sortPosts(posts: Post[], sortBy: SortOption, hasSearchQuery: boo
       break;
 
     case 'llm-asc':
-      sorted.sort((a, b) => a.llm_info.primary_llm.localeCompare(b.llm_info.primary_llm));
+      sorted.sort((a, b) => resolveLLMFromPost(a).localeCompare(resolveLLMFromPost(b)));
       break;
   }
 

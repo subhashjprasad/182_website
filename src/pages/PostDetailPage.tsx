@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { usePost, usePostsData } from '../hooks/usePostsData';
 import { useBookmarksStore } from '../store/useBookmarksStore';
 import { getRelatedPosts } from '../lib/filterPosts';
-import { getAuthorDisplayName, getEdUrl } from '../lib/utils';
+import { getAuthorDisplayName, getEdUrl, resolveLLMFromPost } from '../lib/utils';
 
 type TabType = 'overview' | 'analysis' | 'code' | 'attachments';
 
@@ -100,7 +100,7 @@ export function PostDetailPage() {
 
         <div className="flex flex-wrap gap-2 mb-4">
           <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium">
-            {post.llm_info.primary_llm}
+            {resolveLLMFromPost(post)}
           </span>
           {post.llm_info.variant && (
             <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full">
@@ -251,16 +251,26 @@ export function PostDetailPage() {
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   Tags
                 </h2>
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                {post.tags.filter(tag => {
+                  const t = tag.toLowerCase();
+                  return t !== 'unknown' && t !== 'other';
+                }).length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags
+                      .filter(tag => {
+                        const t = tag.toLowerCase();
+                        return t !== 'unknown' && t !== 'other';
+                      })
+                      .map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                  </div>
+                )}
               </div>
             </div>
           )}

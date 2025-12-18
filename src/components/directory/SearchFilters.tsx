@@ -6,6 +6,7 @@ interface SearchFiltersProps {
   filterOptions: {
     llms: string[];
     llmVariants: string[];
+    assistants: string[];
     taskTypes: string[];
     homeworks: string[];
     tags: string[];
@@ -39,6 +40,7 @@ export function SearchFilters({
   const activeFilterCount =
     filters.llms.length +
     filters.llmVariants.length +
+    filters.assistants.length +
     filters.taskTypes.length +
     filters.homeworks.length +
     (filters.minHighlightScore > 0 ? 1 : 0) +
@@ -121,6 +123,29 @@ export function SearchFilters({
               <span className="text-sm text-gray-700 dark:text-gray-300">{llm}</span>
             </label>
           ))}
+        </div>
+      </div>
+
+      {/* Assistant/Tool Filter */}
+      <div className="p-4 bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 rounded-lg border border-cyan-200 dark:border-cyan-800/30">
+        <h4 className="text-sm font-semibold text-cyan-700 dark:text-cyan-300 mb-3">
+          Assistant / Tool
+        </h4>
+        <div className="space-y-2">
+          {filterOptions.assistants.map((tool) => (
+            <label key={tool} className="flex items-center space-x-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={filters.assistants.includes(tool)}
+                onChange={(e) => handleCheckboxChange('assistants', tool, e.target.checked)}
+                className="rounded border-gray-300 text-cyan-600 focus:ring-cyan-500"
+              />
+              <span className="text-sm text-gray-700 dark:text-gray-300">{tool}</span>
+            </label>
+          ))}
+          {filterOptions.assistants.length === 0 && (
+            <p className="text-xs text-gray-500 dark:text-gray-400">No assistant/tool tags found.</p>
+          )}
         </div>
       </div>
 
