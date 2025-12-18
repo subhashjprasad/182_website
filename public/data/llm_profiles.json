@@ -1,0 +1,325 @@
+[
+  {
+    "llm_name": "Unknown",
+    "submission_count": 26,
+    "average_success_rate": 72.0,
+    "task_strengths": [
+      "neural-network-architecture",
+      "visualization",
+      "optimizer-implementation",
+      "training-loop",
+      "loss-function"
+    ],
+    "task_weaknesses": [],
+    "common_failure_modes": [
+      "Misinterpreting task requirements based on common terminology vs. specific assignment context",
+      "Failing to adhere to specified implementation details (e.g., parameter names, data structures)",
+      "Lack of global context understanding for the entire notebook/assignment",
+      "Initial failure to use specified imported functions",
+      "Outputting mean instead of distributions for VAE components"
+    ],
+    "unique_capabilities": [
+      "Deepseek-v3.2 can extract text from PDF files, analyze coding problems, and produce formatted answers effectively, especially with its 'DeepThink' feature.",
+      "Gemini Pro can generate simple HTML pages for conceptual illustrations with minimal interaction.",
+      "Gemini Pro can provide interactive guidance through complex material (SSMs), adjusting explanations based on user understanding.",
+      "Gemini Pro is capable of generating structured documents like LaTeX handouts from interactive conversations.",
+      "Performed well on conceptual ML reasoning"
+    ]
+  },
+  {
+    "llm_name": "Gemini",
+    "submission_count": 26,
+    "average_success_rate": 75.2,
+    "task_strengths": [
+      "tensor-manipulation",
+      "neural-network-architecture",
+      "visualization",
+      "code-generation",
+      "backpropagation"
+    ],
+    "task_weaknesses": [],
+    "common_failure_modes": [
+      "Environment and TypeErrors",
+      "Loss of context",
+      "Incorrect initial implementation of batchnorm, pooling, dropout, and conv forward/backward logic",
+      "Incorrect inference of implicit user constraints",
+      "Misinterpreting problem constraints or hints."
+    ],
+    "unique_capabilities": [
+      "Converged to a correct, reference-matching solution",
+      "Achieved the expected accuracy",
+      "Followed the reference architecture once nudged",
+      "Competent and capable of matching the spec",
+      "Generated a plan for coding tasks (figuring out files/order) instead of just dumping code"
+    ]
+  },
+  {
+    "llm_name": "ChatGPT",
+    "submission_count": 19,
+    "average_success_rate": 74.8,
+    "task_strengths": [
+      "visualization",
+      "backpropagation",
+      "training-loop",
+      "code-refactoring",
+      "loss-function"
+    ],
+    "task_weaknesses": [
+      "data-preprocessing",
+      "hyperparameter-tuning"
+    ],
+    "common_failure_modes": [
+      "Providing alternative valid implementations that might not be optimal or standard in a given context",
+      "Making independent implementation decisions without explicit instruction to do so",
+      "Failure to adhere to assignment's structural and formatting requirements (e.g., cell-by-cell, integration with starter code).",
+      "Lack of specific details emphasized in instructional materials",
+      "Subtle phrasing differences from expected answers"
+    ],
+    "unique_capabilities": [
+      "Forced a clear step-by-step plan for complex tasks (CPU implementation)",
+      "Able to one-shot solutions for specific tasks (GPU implementation and questions)",
+      "Demonstrated reasoning pattern reuse, leading to faster subsequent solutions",
+      "Generated correct and functional code that produced expected outputs",
+      "Performed surprisingly well one-shot on multiple coding questions"
+    ]
+  },
+  {
+    "llm_name": "Claude",
+    "submission_count": 16,
+    "average_success_rate": 85,
+    "task_strengths": [
+      "neural-network-architecture",
+      "training-loop",
+      "loss-function",
+      "tensor-manipulation",
+      "visualization"
+    ],
+    "task_weaknesses": [],
+    "common_failure_modes": [
+      "Generating code with subtle bugs in complex neural network architectures that it could not self-correct",
+      "Struggled with optional/more complex problem components",
+      "Used `np.eye` frequently, indicating a particular convention preference",
+      "Overconfident predictions of experimental outcomes without empirical validation",
+      "Inability to select optimal hyperparameters for specific problem instances without iterative testing"
+    ],
+    "unique_capabilities": [
+      "Answered conceptual questions correctly and in detail",
+      "Performed well with one-shot or few-shot prompting for coding questions",
+      "Able to generate multiple versions of code that solved problems (e.g., with and without einops)",
+      "Understood complex assignment specifications for both VAE and MAML.",
+      "Correctly implemented Gaussian sampling with the reparameterization trick for VAE."
+    ]
+  },
+  {
+    "llm_name": "GPT",
+    "submission_count": 12,
+    "average_success_rate": 83.8,
+    "task_strengths": [
+      "debugging",
+      "bug-fixing",
+      "neural-network-architecture",
+      "optimizer-implementation",
+      "training-loop"
+    ],
+    "task_weaknesses": [],
+    "common_failure_modes": [
+      "Introducing bugs in initial code generation attempts",
+      "Incorrect naming or argument values for specific library functions/parameters.",
+      "Providing overly complex solutions when simpler alternatives exist.",
+      "Generating ineffective initial hyperparameter sets.",
+      "Minor errors in coding tasks that were correctable with further context."
+    ],
+    "unique_capabilities": [
+      "Effective at solving each problem",
+      "One-shot most problem subparts",
+      "Able to fairly easily fix all bugs it introduced",
+      "Did not need significant steering/hints to get to a working solution",
+      "Deep understanding of advanced deep learning concepts (MAML, VAE, reparameterization trick, ELBO components)"
+    ]
+  },
+  {
+    "llm_name": "Grok",
+    "submission_count": 12,
+    "average_success_rate": 47,
+    "task_strengths": [
+      "loss-function"
+    ],
+    "task_weaknesses": [
+      "debugging",
+      "training-loop",
+      "bug-fixing",
+      "code-refactoring",
+      "optimizer-implementation"
+    ],
+    "common_failure_modes": [
+      "Minor typos",
+      "Failure to recognize and complete 'TODO' sections.",
+      "Incorrect tensor shape handling.",
+      "Mixing different batching strategies in intermediate code",
+      "Blurring complexity discussions between distinct components"
+    ],
+    "unique_capabilities": [
+      "Can produce correct code when provided with step-by-step, detailed guidance and explicit contextual frameworks.",
+      "Often 'one-shot' required coding TODOs",
+      "Produced correct PyTorch implementations for various components (unrolled RNN, divide-and-conquer kernel, convolution-based forward pass)",
+      "Suggested code matched intended math",
+      "Respected batch dimensions, dtypes, and devices"
+    ]
+  },
+  {
+    "llm_name": "Mistral",
+    "submission_count": 10,
+    "average_success_rate": 65.4,
+    "task_strengths": [
+      "neural-network-architecture",
+      "optimizer-implementation",
+      "training-loop",
+      "tensor-manipulation",
+      "hyperparameter-tuning"
+    ],
+    "task_weaknesses": [],
+    "common_failure_modes": [
+      "Struggling with non-standard or highly specific requirements.",
+      "Failing to capture the nuanced conceptual goals of the assignment.",
+      "Introducing subtle but critical bugs in practical implementation details (e.g., mixed precision, attention masking, layer norm order).",
+      "Providing generic or superficial explanations instead of insightful conceptual analysis.",
+      "Providing general conceptual knowledge instead of detailed visual observations tailored to specific inputs"
+    ],
+    "unique_capabilities": [
+      "Good at producing plausible starter code for standard components.",
+      "Performed relatively well on straightforward parts.",
+      "Generated mostly correct or easy-to-fix code for basic transformer and simple attention patterns.",
+      "Could reproduce common patterns (PyTorch modules, residual connections, simple attention matrices).",
+      "Provided a reasonable starting structure for complex assignments."
+    ]
+  },
+  {
+    "llm_name": "DeepSeek",
+    "submission_count": 10,
+    "average_success_rate": 50,
+    "task_strengths": [
+      "tensor-manipulation",
+      "neural-network-architecture"
+    ],
+    "task_weaknesses": [
+      "debugging",
+      "bug-fixing",
+      "training-loop",
+      "optimizer-implementation",
+      "hyperparameter-tuning"
+    ],
+    "common_failure_modes": [
+      "Generating code that initially fails test cases.",
+      "Getting 'stuck' and failing to converge on a correct solution for complex bugs without specific human intervention.",
+      "Type incompatibility errors with PyTorch tensor operations, specifically when a byte array was passed to a method expecting a boolean array (like `mask_fill`)",
+      "Incorrect gradient initialization for momentum",
+      "Incorrect coefficient order in optimizer"
+    ],
+    "unique_capabilities": [
+      "Ability to generate vectorized Numpy code",
+      "Proficiency in handling backpropagation logic",
+      "Quickly generated initial code for functions.",
+      "Able to identify error source and update code after assertion errors.",
+      "Actively traced code and test cases during debugging."
+    ]
+  },
+  {
+    "llm_name": "Kimi",
+    "submission_count": 10,
+    "average_success_rate": 47.2,
+    "task_strengths": [
+      "loss-function"
+    ],
+    "task_weaknesses": [
+      "visualization",
+      "backpropagation",
+      "data-preprocessing"
+    ],
+    "common_failure_modes": [
+      "Failed to re-evaluate the core problem when its initial approach was unsuccessful",
+      "Suggested workarounds (like lowering tolerance) instead of fundamental code corrections",
+      "Getting confused by processing too many images simultaneously.",
+      "Failing to prioritize or focus on relevant visual information.",
+      "Incorrect reduction (sum vs. mean) for loss terms"
+    ],
+    "unique_capabilities": [
+      "Very fast",
+      "Concise with easy parts",
+      "Concise with code changes (diff-style updates)",
+      "Able to complete 'Part 1 Transformer notebook' fully correct on the first try",
+      "Demonstrated slow improvement in performance on later questions, potentially due to in-context learning."
+    ]
+  },
+  {
+    "llm_name": "Cursor",
+    "submission_count": 9,
+    "average_success_rate": 89.2,
+    "task_strengths": [
+      "neural-network-architecture",
+      "training-loop",
+      "performance-optimization",
+      "loss-function",
+      "tensor-manipulation"
+    ],
+    "task_weaknesses": [],
+    "common_failure_modes": [
+      "Generating functionally correct code that deviates from specific, nuanced API calls used in reference solutions.",
+      "Architectural discrepancies (e.g., number of layers)",
+      "Incorrect modifications of code when dealing with overly broad tasks or too many files",
+      "Providing generic theoretical answers instead of specific plot-based observations",
+      "Overstating its ability to interact with external outputs (plots, running code)"
+    ],
+    "unique_capabilities": [
+      "Achieved zero-shot completion for complex coding questions.",
+      "Generated code that passed all tests on the first try.",
+      "Produced expected outputs and, in some cases, superior results compared to the answer key.",
+      "Implemented solutions with consistent organization, utilizing well-known coding structures and ML architectures.",
+      "Followed common training loop formats, consistent with PyTorch documentation."
+    ]
+  },
+  {
+    "llm_name": "Qwen",
+    "submission_count": 7,
+    "average_success_rate": 44.2,
+    "task_strengths": [],
+    "task_weaknesses": [
+      "visualization",
+      "neural-network-architecture",
+      "code-generation",
+      "prompt-engineering"
+    ],
+    "common_failure_modes": [
+      "Over-reliance on prior knowledge/general semantic understanding to interpret visual data",
+      "Misinterpretation or fabrication of visual details on cluttered graphs",
+      "Difficulty with complex, interactive, and multi-state visualizations",
+      "Failing to correct its own errors, offering the same or alternative incorrect solutions",
+      "Providing incorrect code for specific sub-questions"
+    ],
+    "unique_capabilities": [
+      "well-curated chains of thought",
+      "responds with a step-by-step structure",
+      "double checks its answers",
+      "answered everything very well",
+      "great detailed reasoning traces and explanation"
+    ]
+  },
+  {
+    "llm_name": "Llama",
+    "submission_count": 1,
+    "average_success_rate": null,
+    "task_strengths": [],
+    "task_weaknesses": [],
+    "common_failure_modes": [
+      "Conservative approach to hyperparameter adjustments, not making 'larger jumps'.",
+      "Failed repeatedly on hyperparameter tuning questions.",
+      "Reluctance to suggest significant changes ('larger jumps') in hyperparameters.",
+      "Susceptible to failure if not provided with enough or the right context."
+    ],
+    "unique_capabilities": [
+      "Exceptional performance on coding tasks following PyTorch conventions.",
+      "Produced very good responses for written questions, especially those involving image analysis.",
+      "Handled large contexts, including multiple images, in a single chat effectively.",
+      "Overall surprisingly good performance despite the model's controversial reputation."
+    ]
+  }
+]

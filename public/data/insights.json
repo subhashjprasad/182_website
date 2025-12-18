@@ -1,0 +1,785 @@
+{
+  "llm_profiles": [
+    {
+      "llm_name": "Unknown",
+      "submission_count": 26,
+      "average_success_rate": 72.0,
+      "task_strengths": [
+        "neural-network-architecture",
+        "visualization",
+        "optimizer-implementation",
+        "training-loop",
+        "loss-function"
+      ],
+      "task_weaknesses": [],
+      "common_failure_modes": [
+        "Misinterpreting task requirements based on common terminology vs. specific assignment context",
+        "Failing to adhere to specified implementation details (e.g., parameter names, data structures)",
+        "Lack of global context understanding for the entire notebook/assignment",
+        "Initial failure to use specified imported functions",
+        "Outputting mean instead of distributions for VAE components"
+      ],
+      "unique_capabilities": [
+        "Deepseek-v3.2 can extract text from PDF files, analyze coding problems, and produce formatted answers effectively, especially with its 'DeepThink' feature.",
+        "Gemini Pro can generate simple HTML pages for conceptual illustrations with minimal interaction.",
+        "Gemini Pro can provide interactive guidance through complex material (SSMs), adjusting explanations based on user understanding.",
+        "Gemini Pro is capable of generating structured documents like LaTeX handouts from interactive conversations.",
+        "Performed well on conceptual ML reasoning"
+      ]
+    },
+    {
+      "llm_name": "Gemini",
+      "submission_count": 26,
+      "average_success_rate": 75.2,
+      "task_strengths": [
+        "tensor-manipulation",
+        "neural-network-architecture",
+        "visualization",
+        "code-generation",
+        "backpropagation"
+      ],
+      "task_weaknesses": [],
+      "common_failure_modes": [
+        "Environment and TypeErrors",
+        "Loss of context",
+        "Incorrect initial implementation of batchnorm, pooling, dropout, and conv forward/backward logic",
+        "Incorrect inference of implicit user constraints",
+        "Misinterpreting problem constraints or hints."
+      ],
+      "unique_capabilities": [
+        "Converged to a correct, reference-matching solution",
+        "Achieved the expected accuracy",
+        "Followed the reference architecture once nudged",
+        "Competent and capable of matching the spec",
+        "Generated a plan for coding tasks (figuring out files/order) instead of just dumping code"
+      ]
+    },
+    {
+      "llm_name": "ChatGPT",
+      "submission_count": 19,
+      "average_success_rate": 74.8,
+      "task_strengths": [
+        "visualization",
+        "backpropagation",
+        "training-loop",
+        "code-refactoring",
+        "loss-function"
+      ],
+      "task_weaknesses": [
+        "data-preprocessing",
+        "hyperparameter-tuning"
+      ],
+      "common_failure_modes": [
+        "Providing alternative valid implementations that might not be optimal or standard in a given context",
+        "Making independent implementation decisions without explicit instruction to do so",
+        "Failure to adhere to assignment's structural and formatting requirements (e.g., cell-by-cell, integration with starter code).",
+        "Lack of specific details emphasized in instructional materials",
+        "Subtle phrasing differences from expected answers"
+      ],
+      "unique_capabilities": [
+        "Forced a clear step-by-step plan for complex tasks (CPU implementation)",
+        "Able to one-shot solutions for specific tasks (GPU implementation and questions)",
+        "Demonstrated reasoning pattern reuse, leading to faster subsequent solutions",
+        "Generated correct and functional code that produced expected outputs",
+        "Performed surprisingly well one-shot on multiple coding questions"
+      ]
+    },
+    {
+      "llm_name": "Claude",
+      "submission_count": 16,
+      "average_success_rate": 85,
+      "task_strengths": [
+        "neural-network-architecture",
+        "training-loop",
+        "loss-function",
+        "tensor-manipulation",
+        "visualization"
+      ],
+      "task_weaknesses": [],
+      "common_failure_modes": [
+        "Generating code with subtle bugs in complex neural network architectures that it could not self-correct",
+        "Struggled with optional/more complex problem components",
+        "Used `np.eye` frequently, indicating a particular convention preference",
+        "Overconfident predictions of experimental outcomes without empirical validation",
+        "Inability to select optimal hyperparameters for specific problem instances without iterative testing"
+      ],
+      "unique_capabilities": [
+        "Answered conceptual questions correctly and in detail",
+        "Performed well with one-shot or few-shot prompting for coding questions",
+        "Able to generate multiple versions of code that solved problems (e.g., with and without einops)",
+        "Understood complex assignment specifications for both VAE and MAML.",
+        "Correctly implemented Gaussian sampling with the reparameterization trick for VAE."
+      ]
+    },
+    {
+      "llm_name": "GPT",
+      "submission_count": 12,
+      "average_success_rate": 83.8,
+      "task_strengths": [
+        "debugging",
+        "bug-fixing",
+        "neural-network-architecture",
+        "optimizer-implementation",
+        "training-loop"
+      ],
+      "task_weaknesses": [],
+      "common_failure_modes": [
+        "Introducing bugs in initial code generation attempts",
+        "Incorrect naming or argument values for specific library functions/parameters.",
+        "Providing overly complex solutions when simpler alternatives exist.",
+        "Generating ineffective initial hyperparameter sets.",
+        "Minor errors in coding tasks that were correctable with further context."
+      ],
+      "unique_capabilities": [
+        "Effective at solving each problem",
+        "One-shot most problem subparts",
+        "Able to fairly easily fix all bugs it introduced",
+        "Did not need significant steering/hints to get to a working solution",
+        "Deep understanding of advanced deep learning concepts (MAML, VAE, reparameterization trick, ELBO components)"
+      ]
+    },
+    {
+      "llm_name": "Grok",
+      "submission_count": 12,
+      "average_success_rate": 47,
+      "task_strengths": [
+        "loss-function"
+      ],
+      "task_weaknesses": [
+        "debugging",
+        "training-loop",
+        "bug-fixing",
+        "code-refactoring",
+        "optimizer-implementation"
+      ],
+      "common_failure_modes": [
+        "Minor typos",
+        "Failure to recognize and complete 'TODO' sections.",
+        "Incorrect tensor shape handling.",
+        "Mixing different batching strategies in intermediate code",
+        "Blurring complexity discussions between distinct components"
+      ],
+      "unique_capabilities": [
+        "Can produce correct code when provided with step-by-step, detailed guidance and explicit contextual frameworks.",
+        "Often 'one-shot' required coding TODOs",
+        "Produced correct PyTorch implementations for various components (unrolled RNN, divide-and-conquer kernel, convolution-based forward pass)",
+        "Suggested code matched intended math",
+        "Respected batch dimensions, dtypes, and devices"
+      ]
+    },
+    {
+      "llm_name": "Mistral",
+      "submission_count": 10,
+      "average_success_rate": 65.4,
+      "task_strengths": [
+        "neural-network-architecture",
+        "optimizer-implementation",
+        "training-loop",
+        "tensor-manipulation",
+        "hyperparameter-tuning"
+      ],
+      "task_weaknesses": [],
+      "common_failure_modes": [
+        "Struggling with non-standard or highly specific requirements.",
+        "Failing to capture the nuanced conceptual goals of the assignment.",
+        "Introducing subtle but critical bugs in practical implementation details (e.g., mixed precision, attention masking, layer norm order).",
+        "Providing generic or superficial explanations instead of insightful conceptual analysis.",
+        "Providing general conceptual knowledge instead of detailed visual observations tailored to specific inputs"
+      ],
+      "unique_capabilities": [
+        "Good at producing plausible starter code for standard components.",
+        "Performed relatively well on straightforward parts.",
+        "Generated mostly correct or easy-to-fix code for basic transformer and simple attention patterns.",
+        "Could reproduce common patterns (PyTorch modules, residual connections, simple attention matrices).",
+        "Provided a reasonable starting structure for complex assignments."
+      ]
+    },
+    {
+      "llm_name": "DeepSeek",
+      "submission_count": 10,
+      "average_success_rate": 50,
+      "task_strengths": [
+        "tensor-manipulation",
+        "neural-network-architecture"
+      ],
+      "task_weaknesses": [
+        "debugging",
+        "bug-fixing",
+        "training-loop",
+        "optimizer-implementation",
+        "hyperparameter-tuning"
+      ],
+      "common_failure_modes": [
+        "Generating code that initially fails test cases.",
+        "Getting 'stuck' and failing to converge on a correct solution for complex bugs without specific human intervention.",
+        "Type incompatibility errors with PyTorch tensor operations, specifically when a byte array was passed to a method expecting a boolean array (like `mask_fill`)",
+        "Incorrect gradient initialization for momentum",
+        "Incorrect coefficient order in optimizer"
+      ],
+      "unique_capabilities": [
+        "Ability to generate vectorized Numpy code",
+        "Proficiency in handling backpropagation logic",
+        "Quickly generated initial code for functions.",
+        "Able to identify error source and update code after assertion errors.",
+        "Actively traced code and test cases during debugging."
+      ]
+    },
+    {
+      "llm_name": "Kimi",
+      "submission_count": 10,
+      "average_success_rate": 47.2,
+      "task_strengths": [
+        "loss-function"
+      ],
+      "task_weaknesses": [
+        "visualization",
+        "backpropagation",
+        "data-preprocessing"
+      ],
+      "common_failure_modes": [
+        "Failed to re-evaluate the core problem when its initial approach was unsuccessful",
+        "Suggested workarounds (like lowering tolerance) instead of fundamental code corrections",
+        "Getting confused by processing too many images simultaneously.",
+        "Failing to prioritize or focus on relevant visual information.",
+        "Incorrect reduction (sum vs. mean) for loss terms"
+      ],
+      "unique_capabilities": [
+        "Very fast",
+        "Concise with easy parts",
+        "Concise with code changes (diff-style updates)",
+        "Able to complete 'Part 1 Transformer notebook' fully correct on the first try",
+        "Demonstrated slow improvement in performance on later questions, potentially due to in-context learning."
+      ]
+    },
+    {
+      "llm_name": "Cursor",
+      "submission_count": 9,
+      "average_success_rate": 89.2,
+      "task_strengths": [
+        "neural-network-architecture",
+        "training-loop",
+        "performance-optimization",
+        "loss-function",
+        "tensor-manipulation"
+      ],
+      "task_weaknesses": [],
+      "common_failure_modes": [
+        "Generating functionally correct code that deviates from specific, nuanced API calls used in reference solutions.",
+        "Architectural discrepancies (e.g., number of layers)",
+        "Incorrect modifications of code when dealing with overly broad tasks or too many files",
+        "Providing generic theoretical answers instead of specific plot-based observations",
+        "Overstating its ability to interact with external outputs (plots, running code)"
+      ],
+      "unique_capabilities": [
+        "Achieved zero-shot completion for complex coding questions.",
+        "Generated code that passed all tests on the first try.",
+        "Produced expected outputs and, in some cases, superior results compared to the answer key.",
+        "Implemented solutions with consistent organization, utilizing well-known coding structures and ML architectures.",
+        "Followed common training loop formats, consistent with PyTorch documentation."
+      ]
+    },
+    {
+      "llm_name": "Qwen",
+      "submission_count": 7,
+      "average_success_rate": 44.2,
+      "task_strengths": [],
+      "task_weaknesses": [
+        "visualization",
+        "neural-network-architecture",
+        "code-generation",
+        "prompt-engineering"
+      ],
+      "common_failure_modes": [
+        "Over-reliance on prior knowledge/general semantic understanding to interpret visual data",
+        "Misinterpretation or fabrication of visual details on cluttered graphs",
+        "Difficulty with complex, interactive, and multi-state visualizations",
+        "Failing to correct its own errors, offering the same or alternative incorrect solutions",
+        "Providing incorrect code for specific sub-questions"
+      ],
+      "unique_capabilities": [
+        "well-curated chains of thought",
+        "responds with a step-by-step structure",
+        "double checks its answers",
+        "answered everything very well",
+        "great detailed reasoning traces and explanation"
+      ]
+    },
+    {
+      "llm_name": "Llama",
+      "submission_count": 1,
+      "average_success_rate": null,
+      "task_strengths": [],
+      "task_weaknesses": [],
+      "common_failure_modes": [
+        "Conservative approach to hyperparameter adjustments, not making 'larger jumps'.",
+        "Failed repeatedly on hyperparameter tuning questions.",
+        "Reluctance to suggest significant changes ('larger jumps') in hyperparameters.",
+        "Susceptible to failure if not provided with enough or the right context."
+      ],
+      "unique_capabilities": [
+        "Exceptional performance on coding tasks following PyTorch conventions.",
+        "Produced very good responses for written questions, especially those involving image analysis.",
+        "Handled large contexts, including multiple images, in a single chat effectively.",
+        "Overall surprisingly good performance despite the model's controversial reputation."
+      ]
+    }
+  ],
+  "task_difficulty": {
+    "neural-network-architecture": 28.2,
+    "tensor-manipulation": 27.8,
+    "visualization": 31.0,
+    "performance-optimization": 31.5,
+    "training-loop": 29.4,
+    "optimizer-implementation": 35.9,
+    "loss-function": 12.7,
+    "debugging": 43.2,
+    "bug-fixing": 40.7,
+    "hyperparameter-tuning": 41.1,
+    "backpropagation": 24.6,
+    "code-generation": 37.5,
+    "code-refactoring": 28.3,
+    "data-preprocessing": 39.3,
+    "unit-testing": 12,
+    "prompt-engineering": 80
+  },
+  "nuggets": [
+    {
+      "text": "Unknown: Deepseek-v3.2 can extract text from PDF files, analyze coding problems, and produce formatted answers effectively, especially with its 'DeepThink' feature.",
+      "category": "strength",
+      "source_posts": [
+        "post_7473259"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown: Gemini Pro can generate simple HTML pages for conceptual illustrations with minimal interaction.",
+      "category": "strength",
+      "source_posts": [
+        "post_7473259"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Effective strategy: Providing the LLM with structured input like a PDF of a Jupyter Notebook or lecture notes/YouTube subtitles.",
+      "category": "strategy",
+      "source_posts": [
+        "post_7473259"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Effective strategy: Utilizing specific LLM features like Deepseek's 'DeepThink' for complex problem analysis.",
+      "category": "strategy",
+      "source_posts": [
+        "post_7473259"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "ChatGPT: Forced a clear step-by-step plan for complex tasks (CPU implementation)",
+      "category": "strength",
+      "source_posts": [
+        "post_7452199"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "ChatGPT: Able to one-shot solutions for specific tasks (GPU implementation and questions)",
+      "category": "strength",
+      "source_posts": [
+        "post_7452199"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "ChatGPT struggles with: The 'Thinking mode' process was slower for initial complex tasks due to deliberate reasoning",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452199"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Effective strategy: Using ChatGPT's 'Thinking mode' for complex coding problems",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452199"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Unknown: Handled self-contained tasks well",
+      "category": "strength",
+      "source_posts": [
+        "post_7452179"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown: Correctly implemented decoder for autoencoders",
+      "category": "strength",
+      "source_posts": [
+        "post_7452179"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown struggles with: Struggled with tasks requiring careful reading of specifications",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452179"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown struggles with: Struggled with tasks requiring broader notebook context",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452179"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Gemini: Converged to a correct, reference-matching solution",
+      "category": "strength",
+      "source_posts": [
+        "post_7452178"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Gemini: Achieved the expected accuracy",
+      "category": "strength",
+      "source_posts": [
+        "post_7452178"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Gemini struggles with: Tripped up by environment and TypeErrors",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452178"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Gemini struggles with: Occasionally lost context",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452178"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Effective strategy: Manual guidance to resolve confusion",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452178"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Effective strategy: Manual guidance to resolve code-environment hiccups",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452178"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Unknown: Capable of solving coding problems with minimal intervention for well-defined tasks",
+      "category": "strength",
+      "source_posts": [
+        "post_7452154"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown: Able to complete multi-step coding tasks",
+      "category": "strength",
+      "source_posts": [
+        "post_7452154"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown struggles with: Struggles to identify and use functions from imported Python packages that are not explicitly listed in the input context",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452154"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown struggles with: Tends to avoid using imported functions unless specifically prompted",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452154"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Effective strategy: Explicitly prompting the LLM to use specified functions",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452154"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Effective strategy: Providing corrective feedback (e.g., 'output the mean and not the distributions')",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452154"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Claude: Answered conceptual questions correctly and in detail",
+      "category": "strength",
+      "source_posts": [
+        "post_7452111"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Claude: Performed well with one-shot or few-shot prompting for coding questions",
+      "category": "strength",
+      "source_posts": [
+        "post_7452111"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Claude struggles with: Unable to identify errors in its own generated code for complex architecture design tasks (e.g., early-exit ResNet, optional 2c transformer)",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452111"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Claude struggles with: Required multiple prompt attempts to debug specific architectural problems",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452111"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Cursor: Achieved zero-shot completion for complex coding questions.",
+      "category": "strength",
+      "source_posts": [
+        "post_7452097"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Cursor: Generated code that passed all tests on the first try.",
+      "category": "strength",
+      "source_posts": [
+        "post_7452097"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Cursor struggles with: Struggled with nuanced API usage, missing niche functions or arguments present in the answer key.",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452097"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Effective strategy: Prompting the model to write code for individual TODOs to isolate context for each separate portion of the notebooks.",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452097"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Claude: Understood complex assignment specifications for both VAE and MAML.",
+      "category": "strength",
+      "source_posts": [
+        "post_7452011"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Claude: Correctly implemented Gaussian sampling with the reparameterization trick for VAE.",
+      "category": "strength",
+      "source_posts": [
+        "post_7452011"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Claude struggles with: Required manual execution of the generated Python notebook after code completion.",
+      "category": "weakness",
+      "source_posts": [
+        "post_7452011"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Effective strategy: Running the LLM agentically with full permissions on a virtual environment containing the problem specification PDF and Python notebook.",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452011"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Effective strategy: Providing the LLM with the task description.",
+      "category": "strategy",
+      "source_posts": [
+        "post_7452011"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Unknown: Very good at answering coding questions",
+      "category": "strength",
+      "source_posts": [
+        "post_7451969"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown: Able to one-shot the entire GPU section",
+      "category": "strength",
+      "source_posts": [
+        "post_7451969"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown struggles with: Minor misteps on the CPU portion due to using Numpy implementations",
+      "category": "weakness",
+      "source_posts": [
+        "post_7451969"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Unknown struggles with: Confidence to 'answer ahead' on interpretive questions",
+      "category": "weakness",
+      "source_posts": [
+        "post_7451969"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Gemini: Generated a plan for coding tasks (figuring out files/order) instead of just dumping code",
+      "category": "strength",
+      "source_posts": [
+        "post_7451925"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Gemini: Produced spot-on Python code for tricky reshaping and matrix math",
+      "category": "strength",
+      "source_posts": [
+        "post_7451925"
+      ],
+      "confidence": "high"
+    },
+    {
+      "text": "Effective strategy: Utilizing LLM with 'thinking' capabilities (planning steps)",
+      "category": "strategy",
+      "source_posts": [
+        "post_7451925"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "text": "Effective strategy: Utilizing LLM with integrated 'search' capabilities for contextual explanation",
+      "category": "strategy",
+      "source_posts": [
+        "post_7451925"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "comparative_analysis": {
+    "by_llm": {
+      "Unknown": {
+        "post_count": 26,
+        "avg_highlight_score": 7,
+        "avg_code_correctness": 7.71,
+        "avg_success_rate": 72.0
+      },
+      "ChatGPT": {
+        "post_count": 19,
+        "avg_highlight_score": 7.37,
+        "avg_code_correctness": 8.67,
+        "avg_success_rate": 74.8
+      },
+      "Gemini": {
+        "post_count": 26,
+        "avg_highlight_score": 7.71,
+        "avg_code_correctness": 7.91,
+        "avg_success_rate": 75.2
+      },
+      "Claude": {
+        "post_count": 16,
+        "avg_highlight_score": 7.94,
+        "avg_code_correctness": 8.27,
+        "avg_success_rate": 85
+      },
+      "Cursor": {
+        "post_count": 9,
+        "avg_highlight_score": 7.89,
+        "avg_code_correctness": 8.88,
+        "avg_success_rate": 89.2
+      },
+      "Qwen": {
+        "post_count": 7,
+        "avg_highlight_score": 7,
+        "avg_code_correctness": 6.8,
+        "avg_success_rate": 44.2
+      },
+      "GPT": {
+        "post_count": 12,
+        "avg_highlight_score": 7,
+        "avg_code_correctness": 8,
+        "avg_success_rate": 83.8
+      },
+      "Mistral": {
+        "post_count": 10,
+        "avg_highlight_score": 7.2,
+        "avg_code_correctness": 7.57,
+        "avg_success_rate": 65.4
+      },
+      "DeepSeek": {
+        "post_count": 10,
+        "avg_highlight_score": 7.2,
+        "avg_code_correctness": 8.38,
+        "avg_success_rate": 50
+      },
+      "Grok": {
+        "post_count": 12,
+        "avg_highlight_score": 7.75,
+        "avg_code_correctness": 6.22,
+        "avg_success_rate": 47
+      },
+      "Kimi": {
+        "post_count": 10,
+        "avg_highlight_score": 7.85,
+        "avg_code_correctness": 6.78,
+        "avg_success_rate": 47.2
+      },
+      "Llama": {
+        "post_count": 1,
+        "avg_highlight_score": 6,
+        "avg_code_correctness": 9,
+        "avg_success_rate": null
+      }
+    },
+    "total_llms": 12,
+    "total_posts": 158
+  }
+}
