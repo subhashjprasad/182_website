@@ -51,7 +51,7 @@ export function SearchFilters({
     <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100 space-y-6">
       {/* Search */}
       <div>
-        <label htmlFor="search" className="block text-sm font-medium text-[#3b5bdb] mb-2">
+        <label htmlFor="search" className="block text-sm font-medium text-[#4a6cf7] mb-2">
           Search
         </label>
         <input
@@ -60,20 +60,20 @@ export function SearchFilters({
           value={searchQuery}
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Search posts, authors, LLMs, tags..."
-          className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#3b5bdb]/30 focus:border-transparent bg-white text-[#1f2937]"
+          className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#4a6cf7]/30 focus:border-transparent bg-white text-[#1f2937]"
         />
       </div>
 
       {/* Sort */}
       <div>
-        <label htmlFor="sort" className="block text-sm font-medium text-[#3b5bdb] mb-2">
+        <label htmlFor="sort" className="block text-sm font-medium text-[#4a6cf7] mb-2">
           Sort By
         </label>
         <select
           id="sort"
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value as SortOption)}
-          className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#3b5bdb]/30 focus:border-transparent bg-white text-[#1f2937]"
+          className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#4a6cf7]/30 focus:border-transparent bg-white text-[#1f2937]"
         >
           <option value="relevance">Relevance</option>
           <option value="date-desc">Newest First</option>
@@ -161,7 +161,7 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.taskTypes.includes(task)}
                 onChange={(e) => handleCheckboxChange('taskTypes', task, e.target.checked)}
-                className="rounded border-slate-300 text-slate-700 focus:ring-[#3b5bdb]/30"
+                className="rounded border-slate-300 text-slate-700 focus:ring-[#4a6cf7]/30"
               />
               <span className="text-sm text-slate-800 capitalize">
                 {task.replace(/-/g, ' ')}
@@ -183,7 +183,7 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.homeworks.includes(hw)}
                 onChange={(e) => handleCheckboxChange('homeworks', hw, e.target.checked)}
-                className="rounded border-slate-300 text-slate-700 focus:ring-[#3b5bdb]/30"
+                className="rounded border-slate-300 text-slate-700 focus:ring-[#4a6cf7]/30"
               />
               <span className="text-sm text-slate-800 uppercase">
                 {hw}
@@ -201,7 +201,7 @@ export function SearchFilters({
         <select
           value={filters.minHighlightScore}
           onChange={(e) => onFilterChange({ minHighlightScore: Number(e.target.value) })}
-          className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-[#3b5bdb]/30 focus:border-transparent"
+          className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-[#4a6cf7]/30 focus:border-transparent"
         >
           <option value="0">All Posts</option>
           <option value="5">5+ (Good)</option>

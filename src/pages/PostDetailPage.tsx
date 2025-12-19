@@ -18,7 +18,7 @@ export function PostDetailPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#4a6cf7]"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-400">Loading post...</p>
         </div>
       </div>
@@ -36,7 +36,7 @@ export function PostDetailPage() {
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             The post you're looking for doesn't exist.
           </p>
-          <Link to="/" className="text-blue-600 hover:underline">
+          <Link to="/" className="text-[#4a6cf7] hover:underline">
             Back to Directory
           </Link>
         </div>
@@ -61,7 +61,7 @@ export function PostDetailPage() {
             href={getEdUrl(post)}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#3b5bdb] hover:underline"
+            className="text-[#4a6cf7] hover:underline"
             title="View on Ed Discussion"
           >
             View on Ed
@@ -73,7 +73,7 @@ export function PostDetailPage() {
                 href={post.author.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#3b5bdb] hover:underline"
+                className="text-[#4a6cf7] hover:underline"
               >
                 LinkedIn
               </a>
@@ -84,7 +84,7 @@ export function PostDetailPage() {
         </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          <span className="px-3 py-1 bg-[#e9ecff] text-[#3b5bdb] rounded-full font-medium">
+          <span className="px-3 py-1 bg-[#f0f4f8] text-[#4a6cf7] rounded-full font-medium">
             {resolveLLMFromPost(post)}
           </span>
           {post.llm_info.variant && (
@@ -115,7 +115,7 @@ export function PostDetailPage() {
                 onClick={() => setActiveTab(tab.id as TabType)}
                 className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
                   activeTab === tab.id
-                    ? 'border-[#3b5bdb] text-[#3b5bdb]'
+                    ? 'border-[#4a6cf7] text-[#4a6cf7]'
                     : 'border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-200'
                 }`}
               >
@@ -158,7 +158,7 @@ export function PostDetailPage() {
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <div className="text-2xl font-bold text-[#0b254b]">
+                    <div className="text-2xl font-bold text-[#4a6cf7]">
                       {post.highlight_score}/10
                     </div>
                     <div className="text-sm text-slate-600">
@@ -166,7 +166,7 @@ export function PostDetailPage() {
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <div className="text-2xl font-bold text-[#0b254b]">
+                    <div className="text-2xl font-bold text-[#4a6cf7]">
                       {post.insights.one_shot_success_rate || 'N/A'}
                       {post.insights.one_shot_success_rate && '%'}
                     </div>
@@ -175,7 +175,7 @@ export function PostDetailPage() {
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <div className="text-2xl font-bold text-[#0b254b]">
+                    <div className="text-2xl font-bold text-[#4a6cf7]">
                       {post.insights.iterations_required || 'N/A'}
                     </div>
                     <div className="text-sm text-slate-600">
@@ -183,7 +183,7 @@ export function PostDetailPage() {
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <div className="text-2xl font-bold text-[#0b254b]">
+                    <div className="text-2xl font-bold text-[#4a6cf7]">
                       {post.code_snippets.length}
                     </div>
                     <div className="text-sm text-slate-600">
@@ -222,7 +222,7 @@ export function PostDetailPage() {
                     {post.homework_coverage.map((hw, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-[#e9ecff] text-[#0b254b] rounded-lg text-sm uppercase font-medium"
+                        className="px-3 py-1 bg-[#f0f4f8] text-[#4a6cf7] rounded-lg text-sm uppercase font-medium"
                       >
                         {hw}
                       </span>
@@ -335,7 +335,7 @@ export function PostDetailPage() {
               {/* Effective Strategies */}
               {post.insights.effective_strategies.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-bold text-[#0b254b] mb-3">
+                  <h2 className="text-xl font-bold text-[#4a6cf7] mb-3">
                     💡 Effective Strategies
                   </h2>
                   <ul className="space-y-2">
@@ -344,7 +344,7 @@ export function PostDetailPage() {
                         key={idx}
                         className="flex items-start space-x-2 text-slate-800"
                       >
-                        <span className="text-[#0b254b] mt-1">•</span>
+                        <span className="text-[#4a6cf7] mt-1">•</span>
                         <span>{strategy}</span>
                       </li>
                     ))}
@@ -359,7 +359,7 @@ export function PostDetailPage() {
                 </h2>
                 <div className="grid grid-cols-3 gap-4 mb-3">
                   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <div className="text-2xl font-bold text-[#0b254b]">
+                    <div className="text-2xl font-bold text-[#4a6cf7]">
                       {post.code_quality.correctness_rating}/10
                     </div>
                     <div className="text-sm text-slate-600">
@@ -367,7 +367,7 @@ export function PostDetailPage() {
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <div className="text-2xl font-bold text-[#0b254b]">
+                    <div className="text-2xl font-bold text-[#4a6cf7]">
                       {post.code_quality.code_style_rating}/10
                     </div>
                     <div className="text-sm text-slate-600">
@@ -375,7 +375,7 @@ export function PostDetailPage() {
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                    <div className="text-2xl font-bold text-[#0b254b]">
+                    <div className="text-2xl font-bold text-[#4a6cf7]">
                       {post.code_quality.pythonic_rating}/10
                     </div>
                     <div className="text-sm text-slate-600">
@@ -456,7 +456,7 @@ export function PostDetailPage() {
                         href={attachment.ed_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors"
+                        className="px-4 py-2 bg-[#0b254b] hover:bg-[#0a1f3d] text-white rounded-lg text-sm transition-colors"
                       >
                         View
                       </a>
@@ -480,7 +480,7 @@ export function PostDetailPage() {
               <Link
                 key={relatedPost.post_id}
                 to={`/post/${relatedPost.post_id}`}
-                className="p-4 border border-slate-200 rounded-lg hover:border-[#0b254b] transition-colors bg-white"
+                className="p-4 border border-slate-200 rounded-lg hover:border-[#4a6cf7] transition-colors bg-white"
               >
                 <h3 className="font-semibold text-slate-900 line-clamp-2">
                   {relatedPost.title}

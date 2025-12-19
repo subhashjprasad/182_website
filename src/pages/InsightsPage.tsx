@@ -156,7 +156,7 @@ export function InsightsPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#0b254b]"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-400">Loading insights...</p>
         </div>
       </div>
@@ -556,9 +556,9 @@ export function InsightsPage() {
                     <span className="text-sm text-[#0b254b] capitalize min-w-[200px]">
                       {task.replace(/-/g, ' ')}
                     </span>
-                    <div className="flex-1 mx-4 bg-[#e9ecff] rounded-full h-2 border border-[#dfe4ff]">
+                    <div className="flex-1 mx-4 bg-[#f0f4f8] rounded-full h-2 border border-[#e0e7ef]">
                       <div
-                            className="bg-[#3b5bdb] h-2 rounded-full"
+                            className="bg-[#4a6cf7] h-2 rounded-full"
                             style={{ width: `${Math.min(100, Math.max(0, (difficulty / maxDifficulty) * 100))}%` }}
                       />
                     </div>
@@ -581,7 +581,7 @@ export function InsightsPage() {
           onClick={() => setModalProfile(null)}
         >
           <div
-            className="relative max-w-3xl w-full bg-[#f8f9ff] rounded-xl shadow-xl border border-[#dfe4ff] p-6 space-y-4"
+            className="relative max-w-3xl w-full bg-[#f8f9ff] rounded-xl shadow-xl border border-[#e0e7ef] p-6 space-y-4"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -690,7 +690,7 @@ export function InsightsPage() {
               }
 
               return (
-              <div className="p-4 rounded-lg border border-[#dfe4ff] bg-[#eef2ff]">
+              <div className="p-4 rounded-lg border border-[#e0e7ef] bg-[#eef2ff]">
                 <h4 className="text-sm font-semibold text-[#0b254b] mb-2">Other observations</h4>
                 <ul className="space-y-1 text-sm text-slate-700">
                   {filteredObservations.map((cap, idx) => (

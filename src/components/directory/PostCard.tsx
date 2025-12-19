@@ -12,7 +12,7 @@ export function PostCard({ post }: PostCardProps) {
   return (
     <Link
       to={`/post/${post.post_id}`}
-      className="group block bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-slate-200 hover:border-[#4c6ef5]/40 cursor-pointer"
+      className="group block bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 border border-slate-200 hover:border-[#4a6cf7]/40 cursor-pointer"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
@@ -40,14 +40,14 @@ export function PostCard({ post }: PostCardProps) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1 text-[#4c6ef5] hover:text-[#3b5bdb] font-medium transition-colors"
+          className="inline-flex items-center gap-1 text-[#4a6cf7] hover:text-[#3b5bdb] font-medium transition-colors"
           title="View on Ed Discussion"
         >
           <ExternalLink className="w-3 h-3" />
           Ed Post
         </a>
         <span className="text-slate-400">•</span>
-        <span className="px-3 py-1 bg-white text-[#3b5bdb] border border-[#dfe4ff] rounded-lg font-bold text-xs shadow-sm">
+        <span className="px-3 py-1 bg-white text-[#4a6cf7] border border-slate-200 rounded-lg font-bold text-xs shadow-sm">
           {resolveLLMFromPost(post)}
         </span>
         {post.llm_info.variant && (
@@ -99,20 +99,20 @@ export function PostCard({ post }: PostCardProps) {
       {/* Metrics */}
       <div className="grid grid-cols-3 gap-3 mb-5 text-xs">
         <div className="text-center p-3 bg-white rounded-xl border border-slate-100 shadow-sm">
-          <div className="font-bold text-lg text-[#3b5bdb]">
+          <div className="font-bold text-lg text-[#4a6cf7]">
             {post.highlight_score}/10
           </div>
           <div className="text-slate-600 font-medium">Quality</div>
         </div>
         <div className="text-center p-3 bg-white rounded-xl border border-slate-100 shadow-sm">
-          <div className="font-bold text-lg text-[#3b5bdb]">
+          <div className="font-bold text-lg text-[#4a6cf7]">
             {post.insights.one_shot_success_rate || 'N/A'}
             {post.insights.one_shot_success_rate && '%'}
           </div>
           <div className="text-slate-600 font-medium">Success</div>
         </div>
         <div className="text-center p-3 bg-white rounded-xl border border-slate-100 shadow-sm">
-          <div className="font-bold text-lg text-[#3b5bdb]">
+          <div className="font-bold text-lg text-[#4a6cf7]">
             {post.code_snippets.length}
           </div>
           <div className="text-slate-600 font-medium">Code</div>
