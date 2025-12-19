@@ -138,14 +138,14 @@ export function PostDetailPage() {
               </div>
 
               {/* Original Post Content */}
-              {post.content_markdown && (
+              {(post.content_markdown || post.content_raw_html) && (
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 mb-3">
                     Original Post Content
                   </h2>
-                  <div className="bg-slate-50 p-4 rounded-lg max-h-[600px] overflow-y-auto">
-                    <pre className="whitespace-pre-wrap text-sm text-slate-700 font-sans">
-                      {post.content_markdown}
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 max-h-[600px] overflow-y-auto">
+                    <pre className="whitespace-pre-wrap break-words text-sm text-slate-800 font-sans leading-relaxed">
+                      {post.content_markdown || post.content_raw_html}
                     </pre>
                   </div>
                 </div>

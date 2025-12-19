@@ -11,6 +11,23 @@ export function InsightsPage() {
   const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
   const [modalProfile, setModalProfile] = useState<LLMProfile | null>(null);
 
+  const EXCLUDED_TASKS = useMemo(
+    () =>
+      new Set([
+        // Exact task keys present in insights data
+        'loss-function',
+        'prompt-engineering',
+        'backpropagation',
+        // Catch common variants/typos
+        'loss function task',
+        'prompt engineering task',
+        'loss function',
+        'back propogation tasks',
+        'back propagation tasks',
+      ]),
+    []
+  );
+
   const canonicalizeLLMName = (name: string) => {
     const normalized = name.trim().toLowerCase();
     if (normalized.includes('haiku')) return 'Claude (Haiku)';
@@ -106,32 +123,51 @@ export function InsightsPage() {
     const tasks = new Set<string>();
     (llmProfiles ?? []).forEach(profile => {
       if (profile.llm_name === 'Unknown') return;
-      profile.task_strengths.forEach(task => tasks.add(task));
-      profile.task_weaknesses.forEach(task => tasks.add(task));
+      profile.task_strengths.forEach(task => {
+        if (!EXCLUDED_TASKS.has(task.toLowerCase())) tasks.add(task);
+      });
+      profile.task_weaknesses.forEach(task => {
+        if (!EXCLUDED_TASKS.has(task.toLowerCase())) tasks.add(task);
+      });
     });
     return Array.from(tasks).sort((a, b) => a.localeCompare(b));
-  }, [llmProfiles]);
+  }, [llmProfiles, EXCLUDED_TASKS]);
 
   const toggleTask = (task: string) => {
     setSelectedTasks(prev => (prev.includes(task) ? prev.filter(t => t !== task) : [...prev, task]));
   };
 
   const advisorRanking = useMemo(() => {
-    if (!llmProfiles || selectedTasks.length === 0) return [];
-    const selectedSet = new Set(selectedTasks);
+    if (!llmProfiles) return [];
+    const filteredSelected = selectedTasks.filter(t => !EXCLUDED_TASKS.has(t.toLowerCase()));
+    if (filteredSelected.length === 0) return [];
+    const selectedSet = new Set(filteredSelected);
 
     return llmProfiles
       .filter(profile => profile.llm_name !== 'Unknown')
       .map(profile => {
-        const strengthMatches = profile.task_strengths.filter(task => selectedSet.has(task)).length;
-        const weaknessMatches = profile.task_weaknesses.filter(task => selectedSet.has(task)).length;
+        const filteredStrengths = profile.task_strengths.filter(task => !EXCLUDED_TASKS.has(task.toLowerCase()));
+        const filteredWeaknesses = profile.task_weaknesses.filter(task => !EXCLUDED_TASKS.has(task.toLowerCase()));
+
+        const strengthMatches = filteredStrengths.filter(task => selectedSet.has(task)).length;
+        const weaknessMatches = filteredWeaknesses.filter(task => selectedSet.has(task)).length;
         const baseSuccess = profile.average_success_rate ?? 0;
         // Simple scoring: reward strengths, penalize weaknesses, modestly weight success rate
         const score = strengthMatches * 2 - weaknessMatches + baseSuccess * 0.1;
-        return { profile, score, strengthMatches, weaknessMatches, baseSuccess };
+        return {
+          profile: {
+            ...profile,
+            task_strengths: filteredStrengths,
+            task_weaknesses: filteredWeaknesses,
+          },
+          score,
+          strengthMatches,
+          weaknessMatches,
+          baseSuccess,
+        };
       })
       .sort((a, b) => b.score - a.score);
-  }, [llmProfiles, selectedTasks]);
+  }, [llmProfiles, selectedTasks, EXCLUDED_TASKS]);
 
   const maxDifficulty = useMemo(() => {
     if (!insights?.task_difficulty) return 1;
@@ -323,16 +359,16 @@ export function InsightsPage() {
                       {profile.average_success_rate != null ? `${profile.average_success_rate.toFixed(1)}%` : 'N/A'}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                      <div className="text-sm text-slate-800 max-w-xs truncate">
-                      {profile.task_strengths[0] || 'N/A'}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                      <div className="text-sm text-slate-800 max-w-xs truncate">
-                      {profile.task_weaknesses[0] || 'N/A'}
-                    </div>
-                  </td>
+                <td className="px-6 py-4">
+                    <div className="text-sm text-slate-800 max-w-xs truncate">
+                    {profile.task_strengths.find(task => !EXCLUDED_TASKS.has(task.toLowerCase())) || 'N/A'}
+                  </div>
+                </td>
+                <td className="px-6 py-4">
+                    <div className="text-sm text-slate-800 max-w-xs truncate">
+                    {profile.task_weaknesses.find(task => !EXCLUDED_TASKS.has(task.toLowerCase())) || 'N/A'}
+                  </div>
+                </td>
                 </tr>
               ))}
             </tbody>
@@ -381,9 +417,12 @@ export function InsightsPage() {
                       Strengths
                     </h4>
                     <ul className="text-sm text-slate-700 space-y-0.5">
-                      {profile.task_strengths.slice(0, 3).map((strength, idx) => (
-                        <li key={idx} className="truncate">• {strength}</li>
-                      ))}
+                      {profile.task_strengths
+                        .filter(task => !EXCLUDED_TASKS.has(task.toLowerCase()))
+                        .slice(0, 3)
+                        .map((strength, idx) => (
+                          <li key={idx} className="truncate">• {strength}</li>
+                        ))}
                     </ul>
                   </div>
                 )}
@@ -395,9 +434,12 @@ export function InsightsPage() {
                       Weaknesses
                     </h4>
                     <ul className="text-sm text-slate-700 space-y-0.5">
-                      {profile.task_weaknesses.slice(0, 3).map((weakness, idx) => (
-                        <li key={idx} className="truncate">• {weakness}</li>
-                      ))}
+                      {profile.task_weaknesses
+                        .filter(task => !EXCLUDED_TASKS.has(task.toLowerCase()))
+                        .slice(0, 3)
+                        .map((weakness, idx) => (
+                          <li key={idx} className="truncate">• {weakness}</li>
+                        ))}
                     </ul>
                   </div>
                 )}
@@ -551,6 +593,7 @@ export function InsightsPage() {
               .sort(([, a], [, b]) => b - a)
               .slice(0, 15)
               .map(([task, difficulty]) => (
+                EXCLUDED_TASKS.has(task.toLowerCase()) ? null :
                 <div key={task} className="flex items-center">
                   <div className="flex-1 flex items-center">
                     <span className="text-sm text-[#0b254b] capitalize min-w-[200px]">
