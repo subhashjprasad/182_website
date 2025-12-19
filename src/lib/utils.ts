@@ -91,20 +91,19 @@ export function getEdUrl(post: Post | { ed_thread_id: string }): string {
 }
 
 /**
- * Get the author name directly.
+ * Get a displayable author name; fall back to a short ID if missing/unknown.
  */
 export function getAuthorDisplayName(post: Post): string {
-  if (post.author.name && post.author.name !== 'Unknown') {
-    return post.author.name;
+  const name = post.author.name?.trim() ?? '';
+  if (name && name.toLowerCase() !== 'unknown') {
+    return name;
   }
-
-  // Return a pseudonym based on user ID
-  const userId = post.author.ed_user_id;
+  const userId = post.author.ed_user_id?.trim() ?? '';
   if (userId) {
-    return `Student ${userId.slice(-4)}`; // Use last 4 digits
+    const suffix = userId.slice(-4) || userId;
+    return `Student ${suffix}`;
   }
-
-  return 'Anonymous';
+  return 'Student';
 }
 
 /**

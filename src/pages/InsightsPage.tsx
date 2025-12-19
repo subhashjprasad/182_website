@@ -168,7 +168,7 @@ export function InsightsPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="text-6xl mb-4">⚠️</div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          <h2 className="text-2xl font-bold text-[#0b254b] mb-2">
             Error Loading Insights
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -183,7 +183,7 @@ export function InsightsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="text-3xl font-bold text-[#0b254b] mb-2">
           LLM Insights & Analytics
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
@@ -198,8 +198,8 @@ export function InsightsPage() {
           onClick={() => setActiveTab('compare')}
           className={`px-4 py-2 text-sm font-semibold border-b-2 -mb-px ${
             activeTab === 'compare'
-              ? 'border-sky-600 text-sky-600 dark:text-sky-400'
-              : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-sky-600'
+              ? 'border-slate-800 text-slate-800'
+              : 'border-transparent text-slate-600 hover:text-slate-800'
           }`}
         >
           Compare LLMs
@@ -209,8 +209,8 @@ export function InsightsPage() {
           onClick={() => setActiveTab('advisor')}
           className={`px-4 py-2 text-sm font-semibold border-b-2 -mb-px ${
             activeTab === 'advisor'
-              ? 'border-sky-600 text-sky-600 dark:text-sky-400'
-              : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-sky-600'
+              ? 'border-slate-800 text-slate-800'
+              : 'border-transparent text-slate-600 hover:text-slate-800'
           }`}
         >
           Task Advisor
@@ -220,21 +220,21 @@ export function InsightsPage() {
       {activeTab === 'compare' && (
       <>
       {/* LLM Selection Bar */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 space-y-3">
+      <div className="bg-slate-50 rounded-lg shadow-sm border border-slate-200 p-4 space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-sm font-semibold text-gray-900 dark:text-white">Choose LLMs to compare</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Toggle models on or off to refine the comparisons below.</p>
+            <p className="text-sm font-semibold text-[#0b254b]">Choose LLMs to compare</p>
+            <p className="text-sm text-slate-700">Toggle models on or off to refine the comparisons below.</p>
           </div>
           <div className="flex items-center gap-2 text-sm">
-            <span className="text-gray-700 dark:text-gray-300">
+            <span className="text-[#0b254b] font-semibold">
               {selectedLLMs.length} of {availableLLMs.length} selected
             </span>
             <button
               type="button"
               onClick={() => setSelectedLLMs(availableLLMs)}
               disabled={selectedLLMs.length === availableLLMs.length || availableLLMs.length === 0}
-              className="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="px-3 py-1 rounded-md border border-[#0b254b] bg-[#0b254b] text-white hover:bg-[#0a1f3f] disabled:opacity-60 disabled:cursor-not-allowed"
             >
               Select all
             </button>
@@ -242,7 +242,7 @@ export function InsightsPage() {
               type="button"
               onClick={() => setSelectedLLMs([])}
               disabled={selectedLLMs.length === 0}
-              className="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="px-3 py-1 rounded-md border border-[#0b254b] text-[#0b254b] hover:bg-[#0b254b]/5 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               Clear
             </button>
@@ -258,8 +258,8 @@ export function InsightsPage() {
                 onClick={() => toggleLLM(llm)}
                 className={`px-3 py-1.5 rounded-full border text-sm transition ${
                   isActive
-                    ? 'bg-sky-600 border-sky-600 text-white shadow-sm'
-                    : 'bg-gray-100 border-gray-300 text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    ? 'bg-white border-[#0b254b] text-[#0b254b] shadow-sm'
+                    : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-100'
                 }`}
               >
                 {llm}
@@ -273,102 +273,102 @@ export function InsightsPage() {
       </div>
 
       {/* LLM Comparison Table */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+      <div className="bg-slate-50 rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+        <div className="px-6 py-4 border-b border-slate-200">
+          <h2 className="text-xl font-bold text-slate-800">
             LLM Comparison
           </h2>
         </div>
         {filteredProfiles.length === 0 ? (
-          <div className="px-6 py-6 text-sm text-gray-600 dark:text-gray-300">
+          <div className="px-6 py-6 text-sm text-slate-600">
             Select at least one LLM to view the comparison table.
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    LLM
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Submissions
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Avg Success Rate
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Top Strength
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Top Weakness
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+              <thead className="bg-white">
+              <tr>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                  LLM
+                </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                  Submissions
+                </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                  Avg Success Rate
+                </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                  Top Strength
+                </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                  Top Weakness
+                </th>
+              </tr>
+            </thead>
+              <tbody className="divide-y divide-slate-200 bg-white/80">
                 {filteredProfiles.map((profile) => (
-                  <tr key={profile.llm_name} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900 dark:text-white">
-                        {profile.llm_name}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-700 dark:text-gray-300">
-                        {profile.submission_count}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-700 dark:text-gray-300">
-                        {profile.average_success_rate != null ? `${profile.average_success_rate.toFixed(1)}%` : 'N/A'}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-700 dark:text-gray-300 max-w-xs truncate">
-                        {profile.task_strengths[0] || 'N/A'}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-700 dark:text-gray-300 max-w-xs truncate">
-                        {profile.task_weaknesses[0] || 'N/A'}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                  <tr key={profile.llm_name} className="hover:bg-slate-50">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-slate-900">
+                      {profile.llm_name}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-slate-800">
+                      {profile.submission_count}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-slate-800">
+                      {profile.average_success_rate != null ? `${profile.average_success_rate.toFixed(1)}%` : 'N/A'}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                      <div className="text-sm text-slate-800 max-w-xs truncate">
+                      {profile.task_strengths[0] || 'N/A'}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                      <div className="text-sm text-slate-800 max-w-xs truncate">
+                      {profile.task_weaknesses[0] || 'N/A'}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         )}
       </div>
 
       {/* LLM Detail Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProfiles.length === 0 ? (
-          <div className="col-span-full text-sm text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+          <div className="col-span-full text-sm text-slate-600 bg-slate-50 rounded-lg border border-slate-200 p-6">
             Select at least one LLM to see detailed insights.
           </div>
         ) : (
           filteredProfiles.map((profile) => (
             <div
               key={profile.llm_name}
-              className="relative bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 border border-gray-200 dark:border-gray-700"
+              className="relative bg-slate-50 rounded-lg shadow-sm p-6 border border-slate-200"
             >
               <button
                 type="button"
                 onClick={() => setModalProfile(profile)}
-                className="absolute top-3 right-3 w-9 h-9 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition flex items-center justify-center"
+                className="absolute top-3 right-3 w-9 h-9 rounded-lg border border-slate-200 text-slate-700 hover:bg-white transition flex items-center justify-center"
                 aria-label={`View details for ${profile.llm_name}`}
               >
                 ⓘ
               </button>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">
                 {profile.llm_name}
               </h3>
               <div className="flex items-baseline space-x-2 mb-4">
-                <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">
+                <div className="text-3xl font-bold text-slate-800">
                   {profile.average_success_rate != null ? `${profile.average_success_rate.toFixed(1)}%` : 'N/A'}
                 </div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
+                <div className="text-sm text-slate-600">
                   avg success rate
                 </div>
               </div>
@@ -377,10 +377,10 @@ export function InsightsPage() {
                 {/* Strengths */}
                 {profile.task_strengths.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-1">
+                    <h4 className="text-sm font-semibold text-green-700 mb-1">
                       Strengths
                     </h4>
-                    <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+                    <ul className="text-sm text-slate-700 space-y-0.5">
                       {profile.task_strengths.slice(0, 3).map((strength, idx) => (
                         <li key={idx} className="truncate">• {strength}</li>
                       ))}
@@ -391,10 +391,10 @@ export function InsightsPage() {
                 {/* Weaknesses */}
                 {profile.task_weaknesses.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-semibold text-orange-700 dark:text-orange-400 mb-1">
+                    <h4 className="text-sm font-semibold text-orange-700 mb-1">
                       Weaknesses
                     </h4>
-                    <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+                    <ul className="text-sm text-slate-700 space-y-0.5">
                       {profile.task_weaknesses.slice(0, 3).map((weakness, idx) => (
                         <li key={idx} className="truncate">• {weakness}</li>
                       ))}
@@ -405,10 +405,10 @@ export function InsightsPage() {
                 {/* Unique Capabilities */}
                 {profile.unique_capabilities && profile.unique_capabilities.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-semibold text-sky-700 dark:text-sky-400 mb-1">
-                      Unique Capabilities
+                    <h4 className="text-sm font-semibold text-slate-800 mb-1">
+                      Other observations
                     </h4>
-                    <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+                    <ul className="text-sm text-slate-700 space-y-0.5">
                       {profile.unique_capabilities.slice(0, 2).map((capability, idx) => (
                         <li key={idx} className="truncate">• {capability}</li>
                       ))}
@@ -417,7 +417,7 @@ export function InsightsPage() {
                 )}
               </div>
 
-              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400">
+              <div className="mt-4 pt-4 border-t border-slate-200 text-sm text-slate-600">
                 {profile.submission_count} {profile.submission_count === 1 ? 'submission' : 'submissions'}
               </div>
             </div>
@@ -429,14 +429,14 @@ export function InsightsPage() {
 
       {activeTab === 'advisor' && (
         <div className="space-y-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 space-y-4">
+          <div className="bg-slate-50 rounded-lg shadow-sm border border-slate-200 p-6 space-y-4">
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div>
-                <p className="text-lg font-semibold text-gray-900 dark:text-white">Task Advisor</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-lg font-semibold text-slate-900">Task Advisor</p>
+                <p className="text-sm text-slate-600">
                   Pick the tasks you’re working on. We’ll rank LLMs by their strengths for those tasks.
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-slate-500">
                   Ranking score = (2 × strength hits) − (1 × weakness hits) + 0.1 × avg success rate (%). A “hit” is when a selected task
                   appears in that model’s strengths or weaknesses.
                 </p>
@@ -446,7 +446,7 @@ export function InsightsPage() {
                   type="button"
                   onClick={() => setSelectedTasks(availableTasks)}
                   disabled={selectedTasks.length === availableTasks.length || availableTasks.length === 0}
-                  className="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="px-3 py-1 rounded-md border border-[#0b254b] bg-[#0b254b] text-white hover:bg-[#0a1f3f] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   Select all
                 </button>
@@ -454,7 +454,7 @@ export function InsightsPage() {
                   type="button"
                   onClick={() => setSelectedTasks([])}
                   disabled={selectedTasks.length === 0}
-                  className="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="px-3 py-1 rounded-md border border-[#0b254b] text-[#0b254b] hover:bg-[#0b254b]/5 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   Clear
                 </button>
@@ -471,8 +471,8 @@ export function InsightsPage() {
                     onClick={() => toggleTask(task)}
                     className={`px-3 py-1.5 rounded-full border text-sm transition capitalize ${
                       isActive
-                        ? 'bg-sky-600 border-sky-600 text-white shadow-sm'
-                        : 'bg-gray-100 border-gray-300 text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        ? 'bg-white border-slate-300 text-slate-900 shadow-sm'
+                        : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     {task.replace(/-/g, ' ')}
@@ -480,52 +480,52 @@ export function InsightsPage() {
                 );
               })}
               {availableTasks.length === 0 && (
-                <span className="text-sm text-gray-500 dark:text-gray-400">No task tags available.</span>
+                <span className="text-sm text-slate-500">No task tags available.</span>
               )}
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recommended LLMs</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="bg-slate-50 rounded-lg shadow-sm border border-slate-200">
+            <div className="px-6 py-4 border-b border-slate-200">
+              <h2 className="text-xl font-bold text-slate-900">Recommended LLMs</h2>
+              <p className="text-sm text-slate-600">
                 Ranking favors selected-task strengths, penalizes weaknesses, and lightly weights success rate.
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Score = (2 × strength hits) − (1 × weakness hits) + 0.1 × average success rate (%). Strength/weakness hits
                 count how many of your selected tasks match each model’s strengths/weaknesses.
               </p>
             </div>
             {selectedTasks.length === 0 ? (
-              <div className="px-6 py-6 text-sm text-gray-600 dark:text-gray-300">
+              <div className="px-6 py-6 text-sm text-slate-600">
                 Choose at least one task to see recommendations.
               </div>
             ) : advisorRanking.length === 0 ? (
-              <div className="px-6 py-6 text-sm text-gray-600 dark:text-gray-300">
+              <div className="px-6 py-6 text-sm text-slate-600">
                 No data available for these tasks.
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50 dark:bg-gray-700">
+                  <thead className="bg-white">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Rank</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">LLM</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Score</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Strength hits</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Weakness hits</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Avg success</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Rank</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">LLM</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Score</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Strength hits</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Weakness hits</th>
+                      <th className="px-6 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">Avg success</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tbody className="divide-y divide-slate-200 bg-white/80">
                     {advisorRanking.map((entry, idx) => (
-                      <tr key={entry.profile.llm_name} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                        <td className="px-6 py-3 text-sm text-gray-700 dark:text-gray-300">{idx + 1}</td>
-                        <td className="px-6 py-3 text-sm font-semibold text-gray-900 dark:text-white">{entry.profile.llm_name}</td>
-                        <td className="px-6 py-3 text-sm text-gray-900 dark:text-white">{entry.score.toFixed(1)}</td>
-                        <td className="px-6 py-3 text-sm text-green-700 dark:text-green-400">{entry.strengthMatches}</td>
-                        <td className="px-6 py-3 text-sm text-orange-700 dark:text-orange-400">{entry.weaknessMatches}</td>
-                        <td className="px-6 py-3 text-sm text-gray-700 dark:text-gray-300">
+                      <tr key={entry.profile.llm_name} className="hover:bg-slate-50">
+                        <td className="px-6 py-3 text-sm text-slate-700">{idx + 1}</td>
+                        <td className="px-6 py-3 text-sm font-semibold text-slate-900">{entry.profile.llm_name}</td>
+                        <td className="px-6 py-3 text-sm text-slate-900">{entry.score.toFixed(1)}</td>
+                        <td className="px-6 py-3 text-sm text-green-700">{entry.strengthMatches}</td>
+                        <td className="px-6 py-3 text-sm text-orange-700">{entry.weaknessMatches}</td>
+                        <td className="px-6 py-3 text-sm text-slate-700">
                           {entry.baseSuccess != null ? `${entry.baseSuccess.toFixed(1)}%` : 'N/A'}
                         </td>
                       </tr>
@@ -537,38 +537,38 @@ export function InsightsPage() {
           </div>
 
           {/* Task Difficulty (advisor tab only) */}
-          {insights && Object.keys(insights.task_difficulty).length > 0 && (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                Task Difficulty Ranking
-              </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+      {insights && Object.keys(insights.task_difficulty).length > 0 && (
+            <div className="bg-slate-50 rounded-lg shadow-sm border border-slate-200 p-6">
+              <h2 className="text-xl font-bold text-slate-900 mb-4">
+            Task Difficulty Ranking
+          </h2>
+              <p className="text-sm text-slate-600 mb-2">
                 Bars are scaled relative to the hardest task in this dataset (100% = hardest). Difficulty is computed as
                 100 minus the average one-shot success rate for that task across posts—higher = harder for students.
               </p>
-              <div className="space-y-3">
-                {Object.entries(insights.task_difficulty)
-                  .sort(([, a], [, b]) => b - a)
-                  .slice(0, 15)
-                  .map(([task, difficulty]) => (
-                    <div key={task} className="flex items-center">
-                      <div className="flex-1 flex items-center">
-                        <span className="text-sm text-gray-700 dark:text-gray-300 capitalize min-w-[200px]">
-                          {task.replace(/-/g, ' ')}
-                        </span>
-                        <div className="flex-1 mx-4 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div
-                            className="bg-red-400 h-2 rounded-full"
+          <div className="space-y-3">
+            {Object.entries(insights.task_difficulty)
+              .sort(([, a], [, b]) => b - a)
+              .slice(0, 15)
+              .map(([task, difficulty]) => (
+                <div key={task} className="flex items-center">
+                  <div className="flex-1 flex items-center">
+                    <span className="text-sm text-[#0b254b] capitalize min-w-[200px]">
+                      {task.replace(/-/g, ' ')}
+                    </span>
+                    <div className="flex-1 mx-4 bg-[#e9ecff] rounded-full h-2 border border-[#dfe4ff]">
+                      <div
+                            className="bg-[#3b5bdb] h-2 rounded-full"
                             style={{ width: `${Math.min(100, Math.max(0, (difficulty / maxDifficulty) * 100))}%` }}
-                          />
-                        </div>
-                      </div>
-                      <span className="text-sm font-semibold text-gray-900 dark:text-white w-12 text-right">
-                        {difficulty.toFixed(1)}
-                      </span>
+                      />
                     </div>
-                  ))}
-              </div>
+                  </div>
+                  <span className="text-sm font-semibold text-[#0b254b] w-12 text-right">
+                    {difficulty.toFixed(1)}
+                  </span>
+                </div>
+              ))}
+          </div>
             </div>
           )}
         </div>
@@ -581,38 +581,38 @@ export function InsightsPage() {
           onClick={() => setModalProfile(null)}
         >
           <div
-            className="relative max-w-3xl w-full bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-6 space-y-4"
+            className="relative max-w-3xl w-full bg-[#f8f9ff] rounded-xl shadow-xl border border-[#dfe4ff] p-6 space-y-4"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
               onClick={() => setModalProfile(null)}
-              className="absolute top-3 right-3 w-9 h-9 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center"
+            className="absolute top-3 right-3 w-9 h-9 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center"
               aria-label="Close modal"
             >
               ✕
             </button>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pr-12">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{modalProfile.llm_name}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <h3 className="text-2xl font-bold text-[#0b254b]">{modalProfile.llm_name}</h3>
+                <p className="text-sm text-slate-600">
                   Detailed capability breakdown and task strengths/weaknesses.
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">
+              <div className="text-right">
+                <div className="text-3xl font-bold text-[#0b254b]">
                     {modalProfile.average_success_rate != null ? `${modalProfile.average_success_rate.toFixed(1)}%` : 'N/A'}
                   </div>
-                  <div className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <div className="text-xs uppercase tracking-wide text-slate-500">
                     Avg success rate
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <div className="text-xl font-semibold text-[#0b254b]">
                     {modalProfile.submission_count}
                   </div>
-                  <div className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  <div className="text-xs uppercase tracking-wide text-slate-500">
                     {modalProfile.submission_count === 1 ? 'submission' : 'submissions'}
                   </div>
                 </div>
@@ -620,16 +620,16 @@ export function InsightsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg border border-green-100 dark:border-green-800/40 bg-green-50 dark:bg-green-900/10">
-                <h4 className="text-sm font-semibold text-green-800 dark:text-green-300 mb-2">Strengths</h4>
+              <div className="p-4 rounded-lg border border-green-100 bg-green-50">
+                <h4 className="text-sm font-semibold text-green-800 mb-2">Strengths</h4>
                 {modalProfile.task_strengths.length === 0 ? (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">No strengths recorded.</p>
+                  <p className="text-sm text-slate-600">No strengths recorded.</p>
                 ) : (
                   <div className="flex flex-wrap gap-2">
                     {modalProfile.task_strengths.map((task, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-800/40 dark:text-green-100 capitalize"
+                        className="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 capitalize"
                       >
                         {task.replace(/-/g, ' ')}
                       </span>
@@ -637,16 +637,16 @@ export function InsightsPage() {
                   </div>
                 )}
               </div>
-              <div className="p-4 rounded-lg border border-orange-100 dark:border-orange-800/40 bg-orange-50 dark:bg-orange-900/10">
-                <h4 className="text-sm font-semibold text-orange-800 dark:text-orange-300 mb-2">Weaknesses</h4>
+              <div className="p-4 rounded-lg border border-amber-100 bg-amber-50">
+                <h4 className="text-sm font-semibold text-amber-800 mb-2">Weaknesses</h4>
                 {modalProfile.task_weaknesses.length === 0 ? (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">No weaknesses recorded.</p>
+                  <p className="text-sm text-slate-600">No weaknesses recorded.</p>
                 ) : (
                   <div className="flex flex-wrap gap-2">
                     {modalProfile.task_weaknesses.map((task, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-800 dark:bg-orange-800/40 dark:text-orange-100 capitalize"
+                        className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 capitalize"
                       >
                         {task.replace(/-/g, ' ')}
                       </span>
@@ -657,12 +657,12 @@ export function InsightsPage() {
             </div>
 
             {modalProfile.common_failure_modes && modalProfile.common_failure_modes.length > 0 && (
-              <div className="p-4 rounded-lg border border-red-100 dark:border-red-800/40 bg-red-50 dark:bg-red-900/10">
-                <h4 className="text-sm font-semibold text-red-800 dark:text-red-300 mb-2">Cautionary notes</h4>
-                <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+              <div className="p-4 rounded-lg border border-red-100 bg-red-50">
+                <h4 className="text-sm font-semibold text-red-800 mb-2">Cautionary notes</h4>
+                <ul className="space-y-1 text-sm text-red-800">
                   {modalProfile.common_failure_modes.map((note, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-red-600 dark:text-red-400">•</span>
+                      <span className="text-red-700">•</span>
                       <span>{note}</span>
                     </li>
                   ))}
@@ -690,12 +690,12 @@ export function InsightsPage() {
               }
 
               return (
-              <div className="p-4 rounded-lg border border-sky-100 dark:border-sky-800/40 bg-sky-50 dark:bg-sky-900/10">
-                <h4 className="text-sm font-semibold text-sky-800 dark:text-sky-300 mb-2">Other observations</h4>
-                <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+              <div className="p-4 rounded-lg border border-[#dfe4ff] bg-[#eef2ff]">
+                <h4 className="text-sm font-semibold text-[#0b254b] mb-2">Other observations</h4>
+                <ul className="space-y-1 text-sm text-slate-700">
                   {filteredObservations.map((cap, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-sky-600 dark:text-sky-400">•</span>
+                      <span className="text-[#0b254b]">•</span>
                       <span>{cap}</span>
                     </li>
                   ))}
@@ -708,7 +708,7 @@ export function InsightsPage() {
               <button
                 type="button"
                 onClick={() => setModalProfile(null)}
-                className="px-4 py-2 rounded-md bg-sky-600 text-white font-semibold hover:bg-sky-700"
+                className="px-4 py-2 rounded-md bg-white text-[#0b254b] font-semibold border border-slate-200 hover:border-slate-300"
               >
                 Close
               </button>
