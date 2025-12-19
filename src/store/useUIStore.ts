@@ -1,5 +1,5 @@
 /**
- * Zustand store for UI state (filters, sort, quick view, etc.)
+ * Zustand store for UI state (filters, sort, etc.)
  */
 import { create } from 'zustand';
 import type { FilterState } from '../lib/types';
@@ -16,11 +16,6 @@ interface UIStore {
 
   sortBy: SortOption;
   setSortBy: (sortBy: SortOption) => void;
-
-  // Quick View
-  quickViewPostId: string | null;
-  openQuickView: (postId: string) => void;
-  closeQuickView: () => void;
 
   // Filter panel visibility (mobile)
   isFilterPanelOpen: boolean;
@@ -53,11 +48,6 @@ export const useUIStore = create<UIStore>((set) => ({
 
   sortBy: 'relevance',
   setSortBy: (sortBy) => set({ sortBy }),
-
-  // Quick View
-  quickViewPostId: null,
-  openQuickView: (postId) => set({ quickViewPostId: postId }),
-  closeQuickView: () => set({ quickViewPostId: null }),
 
   // Filter panel
   isFilterPanelOpen: false,

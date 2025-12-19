@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom';
-import { Eye, Bookmark, ExternalLink, Sparkles } from 'lucide-react';
+import { Eye, ExternalLink, Sparkles } from 'lucide-react';
 import type { Post } from '../../lib/types';
-import { useBookmarksStore } from '../../store/useBookmarksStore';
 import { getAuthorDisplayName, getEdUrl, resolveLLMFromPost } from '../../lib/utils';
 
 interface PostCardProps {
   post: Post;
-  onQuickView?: () => void;
 }
 
-export function PostCard({ post, onQuickView }: PostCardProps) {
-  const { isSaved, toggleSave } = useBookmarksStore();
-  const saved = isSaved(post.post_id);
+export function PostCard({ post }: PostCardProps) {
 
   return (
     <div className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-200/50 dark:border-gray-700/50 hover:scale-[1.02] hover:border-sky-300 dark:hover:border-sky-700">
@@ -131,25 +127,6 @@ export function PostCard({ post, onQuickView }: PostCardProps) {
           <Eye className="w-4 h-4" />
           View Details
         </Link>
-        {onQuickView && (
-          <button
-            onClick={onQuickView}
-            className="px-4 py-2.5 border-2 border-sky-200 dark:border-sky-700 hover:bg-sky-50 dark:hover:bg-sky-900/30 text-sky-700 dark:text-sky-300 rounded-xl text-sm font-bold transition-all hover:scale-105"
-          >
-            Quick View
-          </button>
-        )}
-        <button
-          onClick={() => toggleSave(post.post_id)}
-          className={`px-3 py-2.5 rounded-xl transition-all hover:scale-110 ${
-            saved
-              ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
-              : 'border-2 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-          }`}
-          title={saved ? 'Unsave' : 'Save'}
-        >
-          <Bookmark className={`w-4 h-4 ${saved ? 'fill-current' : ''}`} />
-        </button>
       </div>
     </div>
   );

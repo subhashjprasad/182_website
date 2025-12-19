@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@fontsource/plus-jakarta-sans": "^5.2.8",
+    "@fontsource/ubuntu": "^5.2.8",
     "@tanstack/react-query": "^5.90.12",
     "fuse.js": "^7.1.0",
     "lucide-react": "^0.561.0",

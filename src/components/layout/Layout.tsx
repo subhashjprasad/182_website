@@ -1,10 +1,8 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { useBookmarksStore } from '../../store/useBookmarksStore';
-import { LayoutGrid, Sparkles, Bookmark } from 'lucide-react';
+import { LayoutGrid, Sparkles } from 'lucide-react';
 
 export function Layout() {
   const location = useLocation();
-  const savedCount = useBookmarksStore(state => state.getSavedCount());
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -20,18 +18,13 @@ export function Layout() {
         <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="flex justify-between items-center h-20">
             {/* Logo and Title */}
-            <Link to="/" className="flex items-center space-x-4 hover:opacity-90 transition-all group">
-              <div className="w-12 h-12 bg-gradient-to-br from-sky-500 via-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
-                <span className="text-white font-extrabold text-2xl">🤖</span>
-              </div>
-              <div>
-                <h1 className="text-2xl font-extrabold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  CS182 Special Participation B
-                </h1>
-                <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
-                  Exploring LLM Coding Capabilities
-                </p>
-              </div>
+            <Link to="/" className="hover:opacity-90 transition-all">
+              <h1 className="text-2xl font-extrabold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent">
+                CS182 Special Participation B
+              </h1>
+              <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
+                Exploring LLM Coding Capabilities
+              </p>
             </Link>
 
             {/* Navigation */}
@@ -58,14 +51,6 @@ export function Layout() {
                 <Sparkles className="w-4 h-4" />
                 <span>Insights</span>
               </Link>
-
-              {/* Saved Count Badge */}
-              {savedCount > 0 && (
-                <div className="ml-3 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl text-sm font-bold shadow-lg flex items-center space-x-2">
-                  <Bookmark className="w-4 h-4" />
-                  <span>{savedCount}</span>
-                </div>
-              )}
             </nav>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { usePost, usePostsData } from '../hooks/usePostsData';
-import { useBookmarksStore } from '../store/useBookmarksStore';
 import { getRelatedPosts } from '../lib/filterPosts';
 import { getAuthorDisplayName, getEdUrl, resolveLLMFromPost } from '../lib/utils';
 
@@ -11,10 +10,8 @@ export function PostDetailPage() {
   const { postId } = useParams<{ postId: string }>();
   const { data: post, isLoading, error } = usePost(postId);
   const { data: allPosts } = usePostsData();
-  const { isSaved, toggleSave } = useBookmarksStore();
   const [activeTab, setActiveTab] = useState<TabType>('overview');
 
-  const saved = post ? isSaved(post.post_id) : false;
   const relatedPosts = post && allPosts ? getRelatedPosts(post, allPosts) : [];
 
   if (isLoading) {
@@ -51,21 +48,9 @@ export function PostDetailPage() {
     <div className="max-w-5xl mx-auto">
       {/* Hero Section */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 mb-6 border border-gray-200 dark:border-gray-700">
-        <div className="flex items-start justify-between mb-4">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex-1">
-            {post.title}
-          </h1>
-          <button
-            onClick={() => toggleSave(post.post_id)}
-            className={`ml-4 px-4 py-2 rounded-lg font-medium transition-colors ${
-              saved
-                ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
-                : 'border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-            }`}
-          >
-            {saved ? '★ Saved' : '☆ Save'}
-          </button>
-        </div>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          {post.title}
+        </h1>
 
         <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
           <span className="font-medium text-gray-900 dark:text-white">

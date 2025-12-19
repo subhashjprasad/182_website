@@ -1,11 +1,10 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { usePostsData } from '../hooks/usePostsData';
 import { useSearchPosts, useFilterOptions } from '../hooks/useSearchPosts';
 import { filterPosts, sortPosts } from '../lib/filterPosts';
 import { useUIStore } from '../store/useUIStore';
 import { SearchFilters } from '../components/directory/SearchFilters';
 import { PostCard } from '../components/directory/PostCard';
-import { QuickView } from '../components/post/QuickView';
 
 export function DirectoryPage() {
   const { data: posts, isLoading, error } = usePostsData();
@@ -16,9 +15,6 @@ export function DirectoryPage() {
     setFilters,
     sortBy,
     setSortBy,
-    openQuickView,
-    quickViewPostId,
-    closeQuickView,
   } = useUIStore();
 
   // Get filter options from all posts
@@ -38,38 +34,6 @@ export function DirectoryPage() {
     () => sortPosts(filteredPosts, sortBy, !!searchQuery),
     [filteredPosts, sortBy, searchQuery]
   );
-
-  // Quick View state and navigation
-  const currentPostIndex = sortedPosts.findIndex(p => p.post_id === quickViewPostId);
-  const currentPost = currentPostIndex >= 0 ? sortedPosts[currentPostIndex] : null;
-
-  const handleNext = () => {
-    if (currentPostIndex < sortedPosts.length - 1) {
-      openQuickView(sortedPosts[currentPostIndex + 1].post_id);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentPostIndex > 0) {
-      openQuickView(sortedPosts[currentPostIndex - 1].post_id);
-    }
-  };
-
-  // Keyboard navigation for arrow keys when Quick View is open
-  useEffect(() => {
-    if (!quickViewPostId) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') {
-        handleNext();
-      } else if (e.key === 'ArrowLeft') {
-        handlePrevious();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [quickViewPostId, currentPostIndex, sortedPosts]);
 
   if (isLoading) {
     return (
@@ -169,7 +133,6 @@ export function DirectoryPage() {
             <PostCard
               key={post.post_id}
               post={post}
-              onQuickView={() => openQuickView(post.post_id)}
             />
           ))}
         </div>
@@ -181,16 +144,6 @@ export function DirectoryPage() {
           </div>
         )}
       </main>
-
-      {/* Quick View Panel */}
-      <QuickView
-        post={currentPost}
-        onClose={closeQuickView}
-        onNext={handleNext}
-        onPrevious={handlePrevious}
-        hasNext={currentPostIndex >= 0 && currentPostIndex < sortedPosts.length - 1}
-        hasPrevious={currentPostIndex > 0}
-      />
     </div>
   );
 }

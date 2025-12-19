@@ -574,35 +574,6 @@ export function InsightsPage() {
         </div>
       )}
 
-      {/* Insight Nuggets */}
-      {insights?.nuggets && insights.nuggets.length > 0 && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-            Key Insights
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {insights.nuggets.slice(0, 10).map((nugget, idx) => (
-              <div
-                key={idx}
-                className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <span className="text-xs font-semibold text-blue-700 dark:text-blue-400 uppercase">
-                    {nugget.category}
-                  </span>
-                </div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">{nugget.text}</p>
-                {nugget.source_posts && nugget.source_posts.length > 0 && (
-                  <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    From {nugget.source_posts.length} {nugget.source_posts.length === 1 ? 'post' : 'posts'}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Modal for LLM details */}
       {modalProfile && (
         <div
