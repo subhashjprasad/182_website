@@ -56,8 +56,14 @@ export function filterPosts(posts: Post[], filters: FilterState): Post[] {
 
     // Task type filter (post must have at least one matching task)
     if (filters.taskTypes.length > 0) {
+      const EXCLUDED_TASKS = new Set([
+        'backpropagation',
+        'loss-function',
+        'prompt-engineering',
+        'training-loop',
+      ]);
       const hasMatchingTask = post.task_types?.some(task =>
-        filters.taskTypes.includes(task)
+        !EXCLUDED_TASKS.has(task.toLowerCase()) && filters.taskTypes.includes(task)
       );
       if (!hasMatchingTask) {
         return false;

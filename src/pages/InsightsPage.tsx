@@ -18,12 +18,14 @@ export function InsightsPage() {
         'loss-function',
         'prompt-engineering',
         'backpropagation',
+        'training-loop',
         // Catch common variants/typos
         'loss function task',
         'prompt engineering task',
         'loss function',
         'back propogation tasks',
         'back propagation tasks',
+        'training loop',
       ]),
     []
   );

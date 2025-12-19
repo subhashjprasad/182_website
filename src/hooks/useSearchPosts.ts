@@ -62,6 +62,13 @@ export function useSearchPosts(posts: Post[], query: string): PostWithMatches[] 
  * Get unique values for filter options
  */
 export function useFilterOptions(posts: Post[]) {
+  const EXCLUDED_TASKS = new Set([
+    'backpropagation',
+    'loss-function',
+    'prompt-engineering',
+    'training-loop',
+  ]);
+
   const sortWithOtherLast = (items: string[]) =>
     items.sort((a, b) => {
       const aIsOther = a === 'Other';
@@ -94,7 +101,9 @@ export function useFilterOptions(posts: Post[]) {
         llmVariants.add(post.llm_info.variant);
       }
 
-      post.task_types?.forEach(task => taskTypes.add(task));
+      post.task_types
+        ?.filter(task => !EXCLUDED_TASKS.has(task.toLowerCase()))
+        .forEach(task => taskTypes.add(task));
 
       // Normalize homework names to "HW0", "HW1", etc.
       post.homework_coverage?.forEach(hw => {
