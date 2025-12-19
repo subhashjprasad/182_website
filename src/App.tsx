@@ -3,6 +3,7 @@ import { Layout } from './components/layout/Layout';
 import { DirectoryPage } from './pages/DirectoryPage';
 import { PostDetailPage } from './pages/PostDetailPage';
 import { InsightsPage } from './pages/InsightsPage';
+import { LecturesPage } from './pages/LecturesPage';
 import './App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="directory" element={<DirectoryPage />} />
         <Route path="post/:postId" element={<PostDetailPage />} />
         <Route path="insights" element={<InsightsPage />} />
+        <Route path="lectures" element={<LecturesPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

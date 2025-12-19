@@ -93,7 +93,7 @@ export function PostDetailPage() {
             </span>
           )}
           {post.highlight_score >= 7 && (
-            <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 rounded-full font-medium">
+            <span className="px-3 py-1 bg-amber-600 dark:bg-amber-700 text-white rounded-full font-medium">
               ⭐ Featured
             </span>
           )}

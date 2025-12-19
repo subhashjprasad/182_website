@@ -60,7 +60,7 @@ export function SearchFilters({
           value={searchQuery}
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Search posts, authors, LLMs, tags..."
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-transparent dark:bg-gray-700 dark:text-white"
         />
       </div>
 
@@ -73,7 +73,7 @@ export function SearchFilters({
           id="sort"
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value as SortOption)}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-transparent dark:bg-gray-700 dark:text-white"
         >
           <option value="relevance">Relevance</option>
           <option value="date-desc">Newest First</option>
@@ -91,7 +91,7 @@ export function SearchFilters({
         <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
           Filters
           {activeFilterCount > 0 && (
-            <span className="ml-2 text-xs text-blue-600 dark:text-blue-400">
+            <span className="ml-2 text-xs text-sky-500 dark:text-sky-400">
               ({activeFilterCount} active)
             </span>
           )}
@@ -99,7 +99,7 @@ export function SearchFilters({
         {activeFilterCount > 0 && (
           <button
             onClick={resetFilters}
-            className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-xs text-sky-500 dark:text-sky-400 hover:underline"
           >
             Clear all
           </button>
@@ -107,8 +107,8 @@ export function SearchFilters({
       </div>
 
       {/* LLM Filter */}
-      <div className="p-4 bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-900/20 dark:to-blue-900/20 rounded-lg border border-sky-200 dark:border-sky-800/30">
-        <h4 className="text-sm font-semibold text-sky-700 dark:text-sky-300 mb-3">
+      <div className="p-4 bg-gradient-to-br from-sky-50/60 to-blue-50/60 dark:from-sky-900/10 dark:to-blue-900/10 rounded-lg border border-sky-100 dark:border-sky-800/20">
+        <h4 className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-3">
           LLM
         </h4>
         <div className="space-y-2">
@@ -118,7 +118,7 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.llms.includes(llm)}
                 onChange={(e) => handleCheckboxChange('llms', llm, e.target.checked)}
-                className="rounded border-gray-300 text-sky-600 focus:ring-sky-500"
+                className="rounded border-gray-300 text-sky-500 focus:ring-sky-400"
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">{llm}</span>
             </label>
@@ -127,8 +127,8 @@ export function SearchFilters({
       </div>
 
       {/* Assistant/Tool Filter */}
-      <div className="p-4 bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 rounded-lg border border-cyan-200 dark:border-cyan-800/30">
-        <h4 className="text-sm font-semibold text-cyan-700 dark:text-cyan-300 mb-3">
+      <div className="p-4 bg-gradient-to-br from-cyan-50/50 to-teal-50/50 dark:from-cyan-900/10 dark:to-teal-900/10 rounded-lg border border-cyan-100 dark:border-cyan-800/20">
+        <h4 className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 mb-3">
           Assistant / Tool
         </h4>
         <div className="space-y-2">
@@ -138,7 +138,7 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.assistants.includes(tool)}
                 onChange={(e) => handleCheckboxChange('assistants', tool, e.target.checked)}
-                className="rounded border-gray-300 text-cyan-600 focus:ring-cyan-500"
+                className="rounded border-gray-300 text-cyan-500 focus:ring-cyan-400"
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">{tool}</span>
             </label>
@@ -150,8 +150,8 @@ export function SearchFilters({
       </div>
 
       {/* Task Type Filter */}
-      <div className="p-4 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-lg border border-purple-200 dark:border-purple-800/30">
-        <h4 className="text-sm font-semibold text-purple-700 dark:text-purple-300 mb-3">
+      <div className="p-4 bg-gradient-to-br from-purple-50/50 to-indigo-50/50 dark:from-purple-900/10 dark:to-indigo-900/10 rounded-lg border border-purple-100 dark:border-purple-800/20">
+        <h4 className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-3">
           Task Types
         </h4>
         <div className="space-y-2">
@@ -161,7 +161,7 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.taskTypes.includes(task)}
                 onChange={(e) => handleCheckboxChange('taskTypes', task, e.target.checked)}
-                className="rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                className="rounded border-gray-300 text-purple-500 focus:ring-purple-400"
               />
               <span className="text-sm text-gray-700 dark:text-gray-300 capitalize">
                 {task.replace(/-/g, ' ')}
@@ -172,8 +172,8 @@ export function SearchFilters({
       </div>
 
       {/* Homework Filter */}
-      <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-200 dark:border-green-800/30">
-        <h4 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3">
+      <div className="p-4 bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-900/10 dark:to-teal-900/10 rounded-lg border border-emerald-100 dark:border-emerald-800/20">
+        <h4 className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-3">
           Homework
         </h4>
         <div className="space-y-2">
@@ -183,7 +183,7 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.homeworks.includes(hw)}
                 onChange={(e) => handleCheckboxChange('homeworks', hw, e.target.checked)}
-                className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                className="rounded border-gray-300 text-emerald-500 focus:ring-emerald-400"
               />
               <span className="text-sm text-gray-700 dark:text-gray-300 uppercase">
                 {hw}
@@ -194,8 +194,8 @@ export function SearchFilters({
       </div>
 
       {/* Quality Filters */}
-      <div className="p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-lg border border-orange-200 dark:border-orange-800/30">
-        <h4 className="text-sm font-semibold text-orange-700 dark:text-orange-300 mb-3">
+      <div className="p-4 bg-gradient-to-br from-amber-50/50 to-orange-50/50 dark:from-amber-900/10 dark:to-orange-900/10 rounded-lg border border-amber-100 dark:border-amber-800/20">
+        <h4 className="text-sm font-semibold text-amber-600 dark:text-amber-400 mb-3">
           Minimum Quality Score
         </h4>
         <select

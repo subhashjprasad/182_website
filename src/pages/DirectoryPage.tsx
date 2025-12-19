@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { usePostsData } from '../hooks/usePostsData';
 import { useSearchPosts, useFilterOptions } from '../hooks/useSearchPosts';
 import { filterPosts, sortPosts } from '../lib/filterPosts';
@@ -8,6 +9,7 @@ import { PostCard } from '../components/directory/PostCard';
 
 export function DirectoryPage() {
   const { data: posts, isLoading, error } = usePostsData();
+  const [searchParams] = useSearchParams();
   const {
     searchQuery,
     setSearchQuery,
@@ -16,6 +18,27 @@ export function DirectoryPage() {
     sortBy,
     setSortBy,
   } = useUIStore();
+
+  // Handle URL params for filtering (e.g., from lectures page)
+  useEffect(() => {
+    const homeworkParam = searchParams.get('homework');
+    if (homeworkParam) {
+      // Normalize homework to uppercase format (hw0 -> HW0)
+      const normalizedHW = homeworkParam.toUpperCase();
+
+      // Reset filters and set only the homework filter from URL
+      setFilters({
+        llms: [],
+        llmVariants: [],
+        assistants: [],
+        taskTypes: [],
+        homeworks: [normalizedHW],
+        minHighlightScore: 0,
+        minCodeQuality: 0,
+        minSuccessRate: 0,
+      });
+    }
+  }, [searchParams, setFilters]);
 
   // Get filter options from all posts
   const filterOptions = useFilterOptions(posts || []);
@@ -39,8 +62,8 @@ export function DirectoryPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-transparent border-t-sky-600 border-r-blue-600"></div>
-          <p className="mt-6 text-lg font-semibold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">Loading posts...</p>
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-transparent border-t-sky-600 border-r-sky-600"></div>
+          <p className="mt-6 text-lg font-semibold text-gray-700 dark:text-gray-300">Loading posts...</p>
         </div>
       </div>
     );
@@ -51,7 +74,7 @@ export function DirectoryPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center max-w-md mx-auto p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-red-200 dark:border-red-800">
           <div className="text-6xl mb-4">⚠️</div>
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">
+          <h2 className="text-2xl font-bold text-red-600 dark:text-red-500 mb-2">
             Error Loading Posts
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -83,8 +106,8 @@ export function DirectoryPage() {
       <main className="lg:col-span-3">
         {/* Results Header */}
         <div className="mb-8">
-          <h2 className="text-3xl font-extrabold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent">
-            {searchQuery ? 'Search Results' : 'All Submissions'}
+          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+            {searchQuery ? 'Search Results' : filters.homeworks.length > 0 ? `${filters.homeworks.map(hw => hw.toUpperCase()).join(', ')} Submissions` : 'All Submissions'}
           </h2>
           <p className="mt-3 text-gray-600 dark:text-gray-400 font-medium">
             <span className="text-sky-600 dark:text-sky-400 font-bold">{sortedPosts.length}</span> {sortedPosts.length === 1 ? 'submission' : 'submissions'}
@@ -101,7 +124,7 @@ export function DirectoryPage() {
         {sortedPosts.length === 0 && (
           <div className="text-center py-20 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border-2 border-dashed border-sky-300 dark:border-sky-700 shadow-lg">
             <div className="text-7xl mb-6">🔍</div>
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent mb-3">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
               No posts found
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6 text-lg">
@@ -120,7 +143,7 @@ export function DirectoryPage() {
                   minSuccessRate: 0,
                 });
               }}
-              className="px-6 py-3 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-sky-500/30 hover:shadow-xl hover:scale-105"
+              className="px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-bold transition-all"
             >
               Clear all filters
             </button>

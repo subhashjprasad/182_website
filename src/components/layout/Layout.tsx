@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutGrid, Sparkles } from 'lucide-react';
+import { LayoutGrid, Sparkles, BookOpen } from 'lucide-react';
 
 export function Layout() {
   const location = useLocation();
@@ -19,7 +19,7 @@ export function Layout() {
           <div className="flex justify-between items-center h-20">
             {/* Logo and Title */}
             <Link to="/" className="hover:opacity-90 transition-all">
-              <h1 className="text-2xl font-extrabold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-extrabold text-sky-600 dark:text-sky-400">
                 CS182 Special Participation B
               </h1>
               <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
@@ -33,7 +33,7 @@ export function Layout() {
                 to="/"
                 className={`px-5 py-2.5 rounded-xl font-semibold transition-all flex items-center space-x-2 ${
                   isActive('/')
-                    ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/30'
+                    ? 'bg-sky-600 text-white shadow-md'
                     : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -44,12 +44,23 @@ export function Layout() {
                 to="/insights"
                 className={`px-5 py-2.5 rounded-xl font-semibold transition-all flex items-center space-x-2 ${
                   isActive('/insights')
-                    ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/30'
+                    ? 'bg-sky-600 text-white shadow-md'
                     : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 <Sparkles className="w-4 h-4" />
                 <span>Insights</span>
+              </Link>
+              <Link
+                to="/lectures"
+                className={`px-5 py-2.5 rounded-xl font-semibold transition-all flex items-center space-x-2 ${
+                  isActive('/lectures')
+                    ? 'bg-sky-600 text-white shadow-md'
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`}
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Playlist</span>
               </Link>
             </nav>
           </div>

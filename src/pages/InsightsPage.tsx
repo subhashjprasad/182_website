@@ -156,7 +156,7 @@ export function InsightsPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-400">Loading insights...</p>
         </div>
       </div>
@@ -198,8 +198,8 @@ export function InsightsPage() {
           onClick={() => setActiveTab('compare')}
           className={`px-4 py-2 text-sm font-semibold border-b-2 -mb-px ${
             activeTab === 'compare'
-              ? 'border-blue-600 text-blue-600 dark:text-blue-400'
-              : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-blue-600'
+              ? 'border-sky-600 text-sky-600 dark:text-sky-400'
+              : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-sky-600'
           }`}
         >
           Compare LLMs
@@ -209,8 +209,8 @@ export function InsightsPage() {
           onClick={() => setActiveTab('advisor')}
           className={`px-4 py-2 text-sm font-semibold border-b-2 -mb-px ${
             activeTab === 'advisor'
-              ? 'border-blue-600 text-blue-600 dark:text-blue-400'
-              : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-blue-600'
+              ? 'border-sky-600 text-sky-600 dark:text-sky-400'
+              : 'border-transparent text-gray-600 dark:text-gray-300 hover:text-sky-600'
           }`}
         >
           Task Advisor
@@ -258,7 +258,7 @@ export function InsightsPage() {
                 onClick={() => toggleLLM(llm)}
                 className={`px-3 py-1.5 rounded-full border text-sm transition ${
                   isActive
-                    ? 'bg-blue-600 border-blue-600 text-white shadow-sm'
+                    ? 'bg-sky-600 border-sky-600 text-white shadow-sm'
                     : 'bg-gray-100 border-gray-300 text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
@@ -365,7 +365,7 @@ export function InsightsPage() {
                 {profile.llm_name}
               </h3>
               <div className="flex items-baseline space-x-2 mb-4">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">
                   {profile.average_success_rate != null ? `${profile.average_success_rate.toFixed(1)}%` : 'N/A'}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
@@ -405,7 +405,7 @@ export function InsightsPage() {
                 {/* Unique Capabilities */}
                 {profile.unique_capabilities && profile.unique_capabilities.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-semibold text-blue-700 dark:text-blue-400 mb-1">
+                    <h4 className="text-sm font-semibold text-sky-700 dark:text-sky-400 mb-1">
                       Unique Capabilities
                     </h4>
                     <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
@@ -471,7 +471,7 @@ export function InsightsPage() {
                     onClick={() => toggleTask(task)}
                     className={`px-3 py-1.5 rounded-full border text-sm transition capitalize ${
                       isActive
-                        ? 'bg-blue-600 border-blue-600 text-white shadow-sm'
+                        ? 'bg-sky-600 border-sky-600 text-white shadow-sm'
                         : 'bg-gray-100 border-gray-300 text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
@@ -601,7 +601,7 @@ export function InsightsPage() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="text-right">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                  <div className="text-3xl font-bold text-sky-600 dark:text-sky-400">
                     {modalProfile.average_success_rate != null ? `${modalProfile.average_success_rate.toFixed(1)}%` : 'N/A'}
                   </div>
                   <div className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
@@ -690,12 +690,12 @@ export function InsightsPage() {
               }
 
               return (
-              <div className="p-4 rounded-lg border border-blue-100 dark:border-blue-800/40 bg-blue-50 dark:bg-blue-900/10">
-                <h4 className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-2">Other observations</h4>
+              <div className="p-4 rounded-lg border border-sky-100 dark:border-sky-800/40 bg-sky-50 dark:bg-sky-900/10">
+                <h4 className="text-sm font-semibold text-sky-800 dark:text-sky-300 mb-2">Other observations</h4>
                 <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                   {filteredObservations.map((cap, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-blue-600 dark:text-blue-400">•</span>
+                      <span className="text-sky-600 dark:text-sky-400">•</span>
                       <span>{cap}</span>
                     </li>
                   ))}
@@ -708,7 +708,7 @@ export function InsightsPage() {
               <button
                 type="button"
                 onClick={() => setModalProfile(null)}
-                className="px-4 py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700"
+                className="px-4 py-2 rounded-md bg-sky-600 text-white font-semibold hover:bg-sky-700"
               >
                 Close
               </button>

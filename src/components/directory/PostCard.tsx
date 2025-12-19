@@ -10,19 +10,19 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
 
   return (
-    <div className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-200/50 dark:border-gray-700/50 hover:scale-[1.02] hover:border-sky-300 dark:hover:border-sky-700">
+    <Link
+      to={`/post/${post.post_id}`}
+      className="group block bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 border-gray-200/50 dark:border-gray-700/50 hover:border-sky-400 dark:hover:border-sky-500 cursor-pointer"
+    >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1 min-w-0">
-          <Link
-            to={`/post/${post.post_id}`}
-            className="text-xl font-bold text-gray-900 dark:text-white hover:bg-gradient-to-r hover:from-sky-600 hover:to-blue-600 hover:bg-clip-text hover:text-transparent line-clamp-2 transition-all"
-          >
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-2">
             {post.title}
-          </Link>
+          </h3>
         </div>
         {post.highlight_score >= 9 && (
-          <span className="ml-3 flex-shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg shadow-yellow-500/30">
+          <span className="ml-3 flex-shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-600 dark:bg-amber-700 text-white">
             <Sparkles className="w-3 h-3" />
             Featured
           </span>
@@ -39,14 +39,15 @@ export function PostCard({ post }: PostCardProps) {
           href={getEdUrl(post)}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium transition-colors"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center gap-1 text-sky-500 dark:text-sky-400 hover:text-sky-600 dark:hover:text-sky-300 font-medium transition-colors"
           title="View on Ed Discussion"
         >
           <ExternalLink className="w-3 h-3" />
           Ed Post
         </a>
         <span className="text-gray-400">•</span>
-        <span className="px-3 py-1 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-lg font-bold text-xs shadow-sm">
+        <span className="px-3 py-1 bg-sky-600 dark:bg-sky-700 text-white rounded-lg font-bold text-xs shadow-sm">
           {resolveLLMFromPost(post)}
         </span>
         {post.llm_info.variant && (
@@ -110,24 +111,20 @@ export function PostCard({ post }: PostCardProps) {
           </div>
           <div className="text-gray-600 dark:text-gray-400 font-medium">Success</div>
         </div>
-        <div className="text-center p-3 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
-          <div className="font-bold text-lg text-blue-700 dark:text-blue-300">
+        <div className="text-center p-3 bg-gradient-to-br from-sky-50 to-cyan-50 dark:from-sky-900/20 dark:to-cyan-900/20 rounded-xl border border-sky-100 dark:border-sky-800/30">
+          <div className="font-bold text-lg text-sky-700 dark:text-sky-300">
             {post.code_snippets.length}
           </div>
           <div className="text-gray-600 dark:text-gray-400 font-medium">Code</div>
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex items-center gap-2">
-        <Link
-          to={`/post/${post.post_id}`}
-          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-sky-500/30 hover:shadow-xl hover:scale-105"
-        >
-          <Eye className="w-4 h-4" />
-          View Details
-        </Link>
+      {/* Click for more info bar */}
+      <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700 text-center">
+        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+          Click for More Information
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
