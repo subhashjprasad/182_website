@@ -258,7 +258,7 @@ export function InsightsPage() {
                 onClick={() => toggleLLM(llm)}
                 className={`px-3 py-1.5 rounded-full border text-sm transition ${
                   isActive
-                    ? 'bg-white border-[#0b254b] text-[#0b254b] shadow-sm'
+                    ? 'bg-[#0b254b] border-[#0b254b] text-white shadow-sm'
                     : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-100'
                 }`}
               >
@@ -471,7 +471,7 @@ export function InsightsPage() {
                     onClick={() => toggleTask(task)}
                     className={`px-3 py-1.5 rounded-full border text-sm transition capitalize ${
                       isActive
-                        ? 'bg-white border-slate-300 text-slate-900 shadow-sm'
+                        ? 'bg-[#0b254b] border-[#0b254b] text-white shadow-sm'
                         : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
