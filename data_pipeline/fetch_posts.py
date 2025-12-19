@@ -81,19 +81,28 @@ def fetch_all_participation_posts(
 def structure_post_data(raw_post: Dict[str, Any]) -> Dict[str, Any]:
     """
     Convert raw Ed thread data to our structured format.
-    
+
     Args:
         raw_post: Raw thread data from Ed API
-        
+
     Returns:
         Structured post dictionary matching our schema
     """
-    # Extract basic metadata
-    post_id = str(raw_post.get('id', ''))
-    thread_title = raw_post.get('title', 'Untitled')
-    content = raw_post.get('content', '')
-    user_id = raw_post.get('user_id', '')
-    created_at = raw_post.get('created_at', datetime.now().isoformat())
+    # Extract basic metadata from thread
+    thread = raw_post.get('thread', raw_post)  # Handle both nested and flat structure
+    post_id = str(thread.get('id', ''))
+    thread_title = thread.get('title', 'Untitled')
+    content = thread.get('content', '')
+    user_id = thread.get('user_id', '')
+    created_at = thread.get('created_at', datetime.now().isoformat())
+
+    # Look up user name from users array
+    author_name = 'Unknown'
+    users = raw_post.get('users', [])
+    for user in users:
+        if user.get('id') == user_id:
+            author_name = user.get('name', 'Unknown')
+            break
 
     # Build structured post
     structured = {
@@ -101,7 +110,7 @@ def structure_post_data(raw_post: Dict[str, Any]) -> Dict[str, Any]:
         'ed_thread_id': post_id,
         'title': thread_title,
         'author': {
-            'name': 'Unknown',  # Ed API doesn't return user names in thread list
+            'name': author_name,
             'ed_user_id': str(user_id),
             'linkedin': None,  # Will extract from content later
             'website': None,

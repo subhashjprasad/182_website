@@ -94,18 +94,28 @@ class EdClient:
     
     def fetch_thread_details(self, thread_number: int) -> Optional[Dict[str, Any]]:
         """
-        Fetch full details for a specific thread including all posts.
+        Fetch full details for a specific thread including all posts and users.
 
         Args:
             thread_number: The thread number (not ID) to fetch
 
         Returns:
-            Thread details dictionary or None if error
+            Full thread response dictionary (includes 'thread' and 'users' keys) or None if error
         """
         try:
-            details = self.api.get_course_thread(self.course_id, thread_number)
-            time.sleep(0.3)  # Rate limiting
-            return details
+            # Make raw API call to get full response including users array
+            thread_url = f"https://us.edstem.org/api/courses/{self.course_id}/threads/{thread_number}"
+            response = self.api.session.get(thread_url)
+
+            if response.ok:
+                # Return the full response, not just the 'thread' part
+                full_response = response.json()
+                time.sleep(0.3)  # Rate limiting
+                return full_response
+            else:
+                print(f"Error fetching thread {thread_number}: {response.status_code}")
+                return None
+
         except Exception as e:
             print(f"Error fetching thread {thread_number}: {e}")
             return None
