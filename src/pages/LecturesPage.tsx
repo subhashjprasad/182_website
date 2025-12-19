@@ -4,7 +4,6 @@ import { usePostsData } from '../hooks/usePostsData';
 import { lectureSchedule } from '../lib/lectureData';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Post } from '../lib/types';
-import { getAuthorDisplayName } from '../lib/utils';
 
 interface ResourcesPaginationProps {
   posts: Post[];

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Eye, ExternalLink, Sparkles } from 'lucide-react';
+import { ExternalLink, Sparkles } from 'lucide-react';
 import type { Post } from '../../lib/types';
 import { getAuthorDisplayName, getEdUrl, resolveLLMFromPost } from '../../lib/utils';
 
