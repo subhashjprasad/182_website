@@ -106,11 +106,11 @@ export function DirectoryPage() {
       <main className="lg:col-span-3">
         {/* Results Header */}
         <div className="mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-extrabold text-slate-900">
             {searchQuery ? 'Search Results' : filters.homeworks.length > 0 ? `${filters.homeworks.map(hw => hw.toUpperCase()).join(', ')} Submissions` : 'All Submissions'}
           </h2>
-          <p className="mt-3 text-gray-600 dark:text-gray-400 font-medium">
-            <span className="text-sky-600 dark:text-sky-400 font-bold">{sortedPosts.length}</span> {sortedPosts.length === 1 ? 'submission' : 'submissions'}
+          <p className="mt-3 text-slate-600 font-medium">
+            <span className="text-slate-900 font-bold">{sortedPosts.length}</span> {sortedPosts.length === 1 ? 'submission' : 'submissions'}
             {searchQuery && ` matching "${searchQuery}"`}
             {(filters.llms.length > 0 ||
               filters.taskTypes.length > 0 ||
@@ -122,12 +122,12 @@ export function DirectoryPage() {
 
         {/* Empty State */}
         {sortedPosts.length === 0 && (
-          <div className="text-center py-20 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border-2 border-dashed border-sky-300 dark:border-sky-700 shadow-lg">
+          <div className="text-center py-20 bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-dashed border-slate-200 shadow-lg">
             <div className="text-7xl mb-6">🔍</div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+            <h3 className="text-2xl font-bold text-slate-900 mb-3">
               No posts found
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6 text-lg">
+            <p className="text-slate-600 mb-6 text-lg">
               Try adjusting your search or filters
             </p>
             <button
@@ -143,7 +143,7 @@ export function DirectoryPage() {
                   minSuccessRate: 0,
                 });
               }}
-              className="px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-bold transition-all"
+              className="px-6 py-3 bg-white text-slate-900 border border-slate-200 hover:border-slate-300 rounded-xl font-bold transition-all shadow-sm hover:shadow-md hover:scale-[1.01]"
             >
               Clear all filters
             </button>

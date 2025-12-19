@@ -48,10 +48,10 @@ export function SearchFilters({
     (filters.minSuccessRate > 0 ? 1 : 0);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 border border-gray-200 dark:border-gray-700 space-y-6">
+    <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100 space-y-6">
       {/* Search */}
       <div>
-        <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label htmlFor="search" className="block text-sm font-medium text-[#3b5bdb] mb-2">
           Search
         </label>
         <input
@@ -60,20 +60,20 @@ export function SearchFilters({
           value={searchQuery}
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Search posts, authors, LLMs, tags..."
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-transparent dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#3b5bdb]/30 focus:border-transparent bg-white text-[#1f2937]"
         />
       </div>
 
       {/* Sort */}
       <div>
-        <label htmlFor="sort" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label htmlFor="sort" className="block text-sm font-medium text-[#3b5bdb] mb-2">
           Sort By
         </label>
         <select
           id="sort"
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value as SortOption)}
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-transparent dark:bg-gray-700 dark:text-white"
+          className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#3b5bdb]/30 focus:border-transparent bg-white text-[#1f2937]"
         >
           <option value="relevance">Relevance</option>
           <option value="date-desc">Newest First</option>
@@ -84,14 +84,14 @@ export function SearchFilters({
         </select>
       </div>
 
-      <hr className="border-gray-200 dark:border-gray-700" />
+      <hr className="border-slate-200" />
 
       {/* Filters Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+        <h3 className="text-sm font-semibold text-slate-800">
           Filters
           {activeFilterCount > 0 && (
-            <span className="ml-2 text-xs text-sky-500 dark:text-sky-400">
+            <span className="ml-2 text-xs text-slate-500">
               ({activeFilterCount} active)
             </span>
           )}
@@ -99,7 +99,7 @@ export function SearchFilters({
         {activeFilterCount > 0 && (
           <button
             onClick={resetFilters}
-            className="text-xs text-sky-500 dark:text-sky-400 hover:underline"
+            className="text-xs text-slate-500 hover:underline"
           >
             Clear all
           </button>
@@ -107,8 +107,8 @@ export function SearchFilters({
       </div>
 
       {/* LLM Filter */}
-      <div className="p-4 bg-gradient-to-br from-sky-50/60 to-blue-50/60 dark:from-sky-900/10 dark:to-blue-900/10 rounded-lg border border-sky-100 dark:border-sky-800/20">
-        <h4 className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-3">
+      <div className="p-4 bg-white rounded-lg border border-slate-100 shadow-sm">
+        <h4 className="text-sm font-semibold text-slate-800 mb-3">
           LLM
         </h4>
         <div className="space-y-2">
@@ -118,17 +118,17 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.llms.includes(llm)}
                 onChange={(e) => handleCheckboxChange('llms', llm, e.target.checked)}
-                className="rounded border-gray-300 text-sky-500 focus:ring-sky-400"
+                className="rounded border-slate-300 text-slate-700 focus:ring-slate-400"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">{llm}</span>
+              <span className="text-sm text-slate-800">{llm}</span>
             </label>
           ))}
         </div>
       </div>
 
       {/* Assistant/Tool Filter */}
-      <div className="p-4 bg-gradient-to-br from-cyan-50/50 to-teal-50/50 dark:from-cyan-900/10 dark:to-teal-900/10 rounded-lg border border-cyan-100 dark:border-cyan-800/20">
-        <h4 className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 mb-3">
+      <div className="p-4 bg-white rounded-lg border border-slate-100 shadow-sm">
+        <h4 className="text-sm font-semibold text-slate-800 mb-3">
           Assistant / Tool
         </h4>
         <div className="space-y-2">
@@ -138,20 +138,20 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.assistants.includes(tool)}
                 onChange={(e) => handleCheckboxChange('assistants', tool, e.target.checked)}
-                className="rounded border-gray-300 text-cyan-500 focus:ring-cyan-400"
+                className="rounded border-slate-300 text-slate-700 focus:ring-slate-400"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">{tool}</span>
+              <span className="text-sm text-slate-800">{tool}</span>
             </label>
           ))}
           {filterOptions.assistants.length === 0 && (
-            <p className="text-xs text-gray-500 dark:text-gray-400">No assistant/tool tags found.</p>
+            <p className="text-xs text-slate-500">No assistant/tool tags found.</p>
           )}
         </div>
       </div>
 
       {/* Task Type Filter */}
-      <div className="p-4 bg-gradient-to-br from-purple-50/50 to-indigo-50/50 dark:from-purple-900/10 dark:to-indigo-900/10 rounded-lg border border-purple-100 dark:border-purple-800/20">
-        <h4 className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-3">
+      <div className="p-4 bg-white rounded-lg border border-slate-100 shadow-sm">
+        <h4 className="text-sm font-semibold text-slate-800 mb-3">
           Task Types
         </h4>
         <div className="space-y-2">
@@ -161,9 +161,9 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.taskTypes.includes(task)}
                 onChange={(e) => handleCheckboxChange('taskTypes', task, e.target.checked)}
-                className="rounded border-gray-300 text-purple-500 focus:ring-purple-400"
+                className="rounded border-slate-300 text-slate-700 focus:ring-[#3b5bdb]/30"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300 capitalize">
+              <span className="text-sm text-slate-800 capitalize">
                 {task.replace(/-/g, ' ')}
               </span>
             </label>
@@ -172,8 +172,8 @@ export function SearchFilters({
       </div>
 
       {/* Homework Filter */}
-      <div className="p-4 bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-900/10 dark:to-teal-900/10 rounded-lg border border-emerald-100 dark:border-emerald-800/20">
-        <h4 className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-3">
+      <div className="p-4 bg-white rounded-lg border border-slate-100 shadow-sm">
+        <h4 className="text-sm font-semibold text-slate-800 mb-3">
           Homework
         </h4>
         <div className="space-y-2">
@@ -183,9 +183,9 @@ export function SearchFilters({
                 type="checkbox"
                 checked={filters.homeworks.includes(hw)}
                 onChange={(e) => handleCheckboxChange('homeworks', hw, e.target.checked)}
-                className="rounded border-gray-300 text-emerald-500 focus:ring-emerald-400"
+                className="rounded border-slate-300 text-slate-700 focus:ring-[#3b5bdb]/30"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300 uppercase">
+              <span className="text-sm text-slate-800 uppercase">
                 {hw}
               </span>
             </label>
@@ -194,14 +194,14 @@ export function SearchFilters({
       </div>
 
       {/* Quality Filters */}
-      <div className="p-4 bg-gradient-to-br from-amber-50/50 to-orange-50/50 dark:from-amber-900/10 dark:to-orange-900/10 rounded-lg border border-amber-100 dark:border-amber-800/20">
-        <h4 className="text-sm font-semibold text-amber-600 dark:text-amber-400 mb-3">
+      <div className="p-4 bg-white rounded-lg border border-slate-100 shadow-sm">
+        <h4 className="text-sm font-semibold text-slate-800 mb-3">
           Minimum Quality Score
         </h4>
         <select
           value={filters.minHighlightScore}
           onChange={(e) => onFilterChange({ minHighlightScore: Number(e.target.value) })}
-          className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
+          className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-[#3b5bdb]/30 focus:border-transparent"
         >
           <option value="0">All Posts</option>
           <option value="5">5+ (Good)</option>

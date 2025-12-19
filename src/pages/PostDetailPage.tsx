@@ -47,13 +47,13 @@ export function PostDetailPage() {
   return (
     <div className="max-w-5xl mx-auto">
       {/* Hero Section */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 mb-6 border border-gray-200 dark:border-gray-700">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+      <div className="bg-white rounded-lg shadow-sm p-8 mb-6 border border-slate-200">
+        <h1 className="text-3xl font-bold text-slate-900 mb-4">
           {post.title}
         </h1>
 
-        <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-          <span className="font-medium text-gray-900 dark:text-white">
+        <div className="flex items-center space-x-4 text-sm text-slate-600 mb-4">
+          <span className="font-medium text-slate-900">
             {getAuthorDisplayName(post)}
           </span>
           <span>•</span>
@@ -61,7 +61,7 @@ export function PostDetailPage() {
             href={getEdUrl(post)}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-[#3b5bdb] hover:underline"
             title="View on Ed Discussion"
           >
             View on Ed
@@ -73,7 +73,7 @@ export function PostDetailPage() {
                 href={post.author.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
+                className="text-[#3b5bdb] hover:underline"
               >
                 LinkedIn
               </a>
@@ -84,16 +84,16 @@ export function PostDetailPage() {
         </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium">
+          <span className="px-3 py-1 bg-[#e9ecff] text-[#3b5bdb] rounded-full font-medium">
             {resolveLLMFromPost(post)}
           </span>
           {post.llm_info.variant && (
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full">
+            <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full">
               {post.llm_info.variant}
             </span>
           )}
           {post.highlight_score >= 7 && (
-            <span className="px-3 py-1 bg-amber-600 dark:bg-amber-700 text-white rounded-full font-medium">
+            <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-500 text-white">
               ⭐ Featured
             </span>
           )}
@@ -101,8 +101,8 @@ export function PostDetailPage() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
-        <div className="border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-white rounded-lg shadow-sm border border-slate-200 mb-6">
+        <div className="border-b border-slate-200">
           <nav className="flex -mb-px">
             {[
               { id: 'overview', label: 'Overview' },
@@ -115,8 +115,8 @@ export function PostDetailPage() {
                 onClick={() => setActiveTab(tab.id as TabType)}
                 className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
                   activeTab === tab.id
-                    ? 'border-blue-600 text-blue-600 dark:text-blue-400'
-                    : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300'
+                    ? 'border-[#3b5bdb] text-[#3b5bdb]'
+                    : 'border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-200'
                 }`}
               >
                 {tab.label}
@@ -131,20 +131,20 @@ export function PostDetailPage() {
             <div className="space-y-6">
               {/* AI Summary */}
               <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-slate-900 mb-3">
                   AI Summary
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300">{post.summary}</p>
+                <p className="text-slate-700">{post.summary}</p>
               </div>
 
               {/* Original Post Content */}
               {post.content_markdown && (
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h2 className="text-xl font-bold text-slate-900 mb-3">
                     Original Post Content
                   </h2>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg max-h-[600px] overflow-y-auto">
-                    <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300 font-sans">
+                  <div className="bg-slate-50 p-4 rounded-lg max-h-[600px] overflow-y-auto">
+                    <pre className="whitespace-pre-wrap text-sm text-slate-700 font-sans">
                       {post.content_markdown}
                     </pre>
                   </div>
@@ -153,40 +153,40 @@ export function PostDetailPage() {
 
               {/* Key Metrics */}
               <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-slate-900 mb-3">
                   Key Metrics
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="text-2xl font-bold text-[#0b254b]">
                       {post.highlight_score}/10
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-slate-600">
                       Quality Score
                     </div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="text-2xl font-bold text-[#0b254b]">
                       {post.insights.one_shot_success_rate || 'N/A'}
                       {post.insights.one_shot_success_rate && '%'}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-slate-600">
                       Success Rate
                     </div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="text-2xl font-bold text-[#0b254b]">
                       {post.insights.iterations_required || 'N/A'}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-slate-600">
                       Avg Iterations
                     </div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="text-2xl font-bold text-[#0b254b]">
                       {post.code_snippets.length}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-slate-600">
                       Code Snippets
                     </div>
                   </div>
@@ -196,14 +196,14 @@ export function PostDetailPage() {
               {/* Task Coverage */}
               {post.task_types.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h2 className="text-xl font-bold text-slate-900 mb-3">
                     Task Coverage
                   </h2>
                   <div className="flex flex-wrap gap-2">
                     {post.task_types.map((task, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm"
+                        className="px-3 py-1 bg-slate-100 text-slate-800 rounded-lg text-sm"
                       >
                         {task.replace(/-/g, ' ')}
                       </span>
@@ -215,14 +215,14 @@ export function PostDetailPage() {
               {/* Homework Coverage */}
               {post.homework_coverage.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h2 className="text-xl font-bold text-slate-900 mb-3">
                     Homework Coverage
                   </h2>
                   <div className="flex flex-wrap gap-2">
                     {post.homework_coverage.map((hw, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg text-sm uppercase font-medium"
+                        className="px-3 py-1 bg-[#e9ecff] text-[#0b254b] rounded-lg text-sm uppercase font-medium"
                       >
                         {hw}
                       </span>
@@ -233,7 +233,7 @@ export function PostDetailPage() {
 
               {/* Tags */}
               <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-slate-900 mb-3">
                   Tags
                 </h2>
                 {post.tags.filter(tag => {
@@ -249,7 +249,7 @@ export function PostDetailPage() {
                       .map((tag, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm"
+                        className="px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-sm"
                         >
                           {tag}
                         </span>
@@ -265,16 +265,16 @@ export function PostDetailPage() {
               {/* Strengths */}
               {post.insights.strengths.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-bold text-green-700 dark:text-green-400 mb-3">
+                  <h2 className="text-xl font-bold text-green-700 mb-3">
                     ✓ Strengths
                   </h2>
                   <ul className="space-y-2">
                     {post.insights.strengths.map((strength, idx) => (
                       <li
                         key={idx}
-                        className="flex items-start space-x-2 text-gray-700 dark:text-gray-300"
+                        className="flex items-start space-x-2 text-slate-800"
                       >
-                        <span className="text-green-600 dark:text-green-400 mt-1">
+                        <span className="text-green-700 mt-1">
                           •
                         </span>
                         <span>{strength}</span>
@@ -287,16 +287,16 @@ export function PostDetailPage() {
               {/* Weaknesses */}
               {post.insights.weaknesses.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-bold text-orange-700 dark:text-orange-400 mb-3">
+                  <h2 className="text-xl font-bold text-orange-700 mb-3">
                     ⚠ Weaknesses
                   </h2>
                   <ul className="space-y-2">
                     {post.insights.weaknesses.map((weakness, idx) => (
                       <li
                         key={idx}
-                        className="flex items-start space-x-2 text-gray-700 dark:text-gray-300"
+                        className="flex items-start space-x-2 text-slate-800"
                       >
-                        <span className="text-orange-600 dark:text-orange-400 mt-1">
+                        <span className="text-orange-700 mt-1">
                           •
                         </span>
                         <span>{weakness}</span>
@@ -309,20 +309,20 @@ export function PostDetailPage() {
               {/* Hallucinations */}
               {post.insights.hallucinations.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-bold text-red-700 dark:text-red-400 mb-3">
+                  <h2 className="text-xl font-bold text-red-700 mb-3">
                     ✗ Hallucinations
                   </h2>
                   <div className="space-y-3">
                     {post.insights.hallucinations.map((hall, idx) => (
                       <div
                         key={idx}
-                        className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800"
+                        className="bg-red-50 p-4 rounded-lg border border-red-200"
                       >
-                        <p className="text-gray-900 dark:text-white font-medium mb-2">
+                        <p className="text-slate-900 font-medium mb-2">
                           {hall.description}
                         </p>
                         {hall.example && (
-                          <code className="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded block">
+                          <code className="text-sm bg-slate-100 p-2 rounded block text-slate-800">
                             {hall.example}
                           </code>
                         )}
@@ -335,16 +335,16 @@ export function PostDetailPage() {
               {/* Effective Strategies */}
               {post.insights.effective_strategies.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-bold text-blue-700 dark:text-blue-400 mb-3">
+                  <h2 className="text-xl font-bold text-[#0b254b] mb-3">
                     💡 Effective Strategies
                   </h2>
                   <ul className="space-y-2">
                     {post.insights.effective_strategies.map((strategy, idx) => (
                       <li
                         key={idx}
-                        className="flex items-start space-x-2 text-gray-700 dark:text-gray-300"
+                        className="flex items-start space-x-2 text-slate-800"
                       >
-                        <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                        <span className="text-[#0b254b] mt-1">•</span>
                         <span>{strategy}</span>
                       </li>
                     ))}
@@ -354,37 +354,37 @@ export function PostDetailPage() {
 
               {/* Code Quality */}
               <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-xl font-bold text-slate-900 mb-3">
                   Code Quality Assessment
                 </h2>
                 <div className="grid grid-cols-3 gap-4 mb-3">
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="text-2xl font-bold text-[#0b254b]">
                       {post.code_quality.correctness_rating}/10
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-slate-600">
                       Correctness
                     </div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="text-2xl font-bold text-[#0b254b]">
                       {post.code_quality.code_style_rating}/10
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-slate-600">
                       Code Style
                     </div>
                   </div>
-                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="text-2xl font-bold text-[#0b254b]">
                       {post.code_quality.pythonic_rating}/10
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-sm text-slate-600">
                       Pythonic
                     </div>
                   </div>
                 </div>
                 {post.code_quality.notes.length > 0 && (
-                  <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                  <ul className="space-y-1 text-sm text-slate-700">
                     {post.code_quality.notes.map((note, idx) => (
                       <li key={idx}>• {note}</li>
                     ))}
@@ -396,40 +396,40 @@ export function PostDetailPage() {
 
           {activeTab === 'code' && (
             <div className="space-y-6">
-              {post.code_snippets.length === 0 ? (
-                <p className="text-gray-500 dark:text-gray-400">
-                  No code snippets available
-                </p>
-              ) : (
-                post.code_snippets.map((snippet, idx) => (
-                  <div key={idx} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        Snippet {idx + 1}
-                        {snippet.language && (
-                          <span className="ml-2 text-sm font-normal text-gray-500">
-                            ({snippet.language})
-                          </span>
+                  {post.code_snippets.length === 0 ? (
+                    <p className="text-slate-600">
+                      No code snippets available
+                    </p>
+                  ) : (
+                    post.code_snippets.map((snippet, idx) => (
+                      <div key={idx} className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-lg font-semibold text-slate-900">
+                            Snippet {idx + 1}
+                            {snippet.language && (
+                              <span className="ml-2 text-sm font-normal text-slate-600">
+                                ({snippet.language})
+                              </span>
+                            )}
+                          </h3>
+                          <button
+                            onClick={() => navigator.clipboard.writeText(snippet.code)}
+                            className="px-3 py-1 text-sm bg-white border border-slate-200 hover:border-slate-300 text-slate-800 rounded transition-colors"
+                          >
+                            Copy
+                          </button>
+                        </div>
+                        {snippet.context && (
+                          <p className="text-sm text-slate-700">
+                            {snippet.context}
+                          </p>
                         )}
-                      </h3>
-                      <button
-                        onClick={() => navigator.clipboard.writeText(snippet.code)}
-                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded transition-colors"
-                      >
-                        Copy
-                      </button>
-                    </div>
-                    {snippet.context && (
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {snippet.context}
-                      </p>
-                    )}
-                    <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
-                      <code>{snippet.code}</code>
-                    </pre>
-                  </div>
-                ))
-              )}
+                        <pre className="bg-slate-100 text-slate-800 border border-slate-200 p-4 rounded-lg overflow-x-auto">
+                          <code>{snippet.code}</code>
+                        </pre>
+                      </div>
+                    ))
+                  )}
             </div>
           )}
 
@@ -471,8 +471,8 @@ export function PostDetailPage() {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 border border-gray-200 dark:border-gray-700">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <div className="bg-white rounded-lg shadow-sm p-8 border border-slate-200">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">
             Related Posts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -480,18 +480,11 @@ export function PostDetailPage() {
               <Link
                 key={relatedPost.post_id}
                 to={`/post/${relatedPost.post_id}`}
-                className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                className="p-4 border border-slate-200 rounded-lg hover:border-[#0b254b] transition-colors bg-white"
               >
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
+                <h3 className="font-semibold text-slate-900 line-clamp-2">
                   {relatedPost.title}
                 </h3>
-                <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-                  <span>{relatedPost.author.name}</span>
-                  <span>•</span>
-                  <span className="text-blue-600 dark:text-blue-400">
-                    {relatedPost.llm_info.primary_llm}
-                  </span>
-                </div>
               </Link>
             ))}
           </div>

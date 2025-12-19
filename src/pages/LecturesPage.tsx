@@ -19,11 +19,11 @@ function ResourcesPagination({ posts, homeworkKey }: ResourcesPaginationProps) {
 
   if (posts.length === 0) {
     return (
-      <div className="text-sm text-gray-500 dark:text-gray-400 italic">
+      <div className="text-sm text-slate-600 italic">
         No specific resources found.{' '}
         <Link
           to="/"
-          className="text-sky-600 dark:text-sky-400 hover:underline"
+          className="text-slate-800 hover:underline"
         >
           Search Directory
         </Link>
@@ -42,7 +42,7 @@ function ResourcesPagination({ posts, homeworkKey }: ResourcesPaginationProps) {
             </span>
             <Link
               to={`/post/${post.post_id}`}
-              className="text-sky-700 dark:text-sky-400 hover:underline text-sm font-medium leading-tight"
+              className="text-[#0b254b] underline decoration-2 underline-offset-2 hover:text-[#081a36] text-sm font-semibold leading-tight"
             >
               {post.title}
             </Link>
@@ -76,7 +76,7 @@ function ResourcesPagination({ posts, homeworkKey }: ResourcesPaginationProps) {
           </div>
           <Link
             to={`/?homework=${homeworkKey}`}
-            className="text-xs text-sky-600 dark:text-sky-400 hover:underline font-medium"
+            className="text-xs text-[#0b254b] underline decoration-2 underline-offset-2 hover:text-[#081a36] font-semibold"
           >
             Explore →
           </Link>
@@ -112,8 +112,8 @@ export function LecturesPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-transparent border-t-slate-600 border-r-gray-600"></div>
-          <p className="mt-6 text-lg font-semibold bg-gradient-to-r from-gray-700 to-slate-700 bg-clip-text text-transparent">Loading lectures...</p>
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-transparent border-t-slate-500 border-r-slate-400"></div>
+          <p className="mt-6 text-lg font-semibold text-slate-700">Loading lectures...</p>
         </div>
       </div>
     );
@@ -122,12 +122,12 @@ export function LecturesPage() {
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center max-w-md mx-auto p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-red-200 dark:border-red-800">
+        <div className="text-center max-w-md mx-auto p-8 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-red-100">
           <div className="text-6xl mb-4">⚠️</div>
-          <h2 className="text-2xl font-bold text-red-600 dark:text-red-500 mb-2">
+          <h2 className="text-2xl font-bold text-red-600 mb-2">
             Error Loading Content
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-slate-600">
             {error instanceof Error ? error.message : 'Unknown error'}
           </p>
         </div>
@@ -140,40 +140,40 @@ export function LecturesPage() {
       {/* Header */}
       <div className="mb-8 flex items-start justify-between">
         <div>
-          <h1 className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-2">
+          <h1 className="text-4xl font-bold text-slate-800 mb-2">
             Playlist
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-slate-600">
             Curate your learning path. Save relevant resources for each lecture topic.
           </p>
         </div>
         <Link
           to="/"
-          className="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg font-semibold transition-all shadow-md"
+          className="px-5 py-2.5 bg-white text-slate-900 border border-slate-200 hover:border-slate-300 rounded-lg font-semibold transition-all shadow-sm hover:shadow-md"
         >
           Explore
         </Link>
       </div>
 
       {/* Table */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border-2 border-gray-300 dark:border-gray-600 overflow-hidden">
+      <div className="bg-slate-50 rounded-lg shadow-sm border border-slate-200 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-gray-50 dark:bg-gray-900/50 border-b-2 border-gray-300 dark:border-gray-600">
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider w-12 border-r border-gray-300 dark:border-gray-600">
+              <tr className="bg-white border-b border-slate-200">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider w-12 border-r border-slate-200">
                   W
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider w-32 border-r border-gray-300 dark:border-gray-600">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider w-32 border-r border-slate-200">
                   Date
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider w-1/4 border-r border-gray-300 dark:border-gray-600">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider w-1/4 border-r border-slate-200">
                   Lecture Topic
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider border-r border-gray-300 dark:border-gray-600">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider border-r border-slate-200">
                   Resources (Special Participation)
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider w-32">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider w-32">
                   Homework
                 </th>
               </tr>
@@ -185,23 +185,23 @@ export function LecturesPage() {
                 return (
                   <tr
                     key={lecture.week}
-                    className="hover:bg-gray-50 dark:hover:bg-gray-900/30 transition-colors border-b border-gray-300 dark:border-gray-600"
+                    className="hover:bg-white transition-colors border-b border-slate-200 bg-white/80"
                   >
                     {/* Week */}
-                    <td className="px-4 py-4 text-sm font-medium text-gray-900 dark:text-white border-r border-gray-300 dark:border-gray-600">
+                    <td className="px-4 py-4 text-sm font-medium text-slate-900 border-r border-slate-200">
                       {lecture.week}
                     </td>
 
                     {/* Date */}
-                    <td className="px-4 py-4 text-sm text-gray-700 dark:text-gray-300 border-r border-gray-300 dark:border-gray-600">
+                    <td className="px-4 py-4 text-sm text-slate-700 border-r border-slate-200">
                       {lecture.dates}
                     </td>
 
                     {/* Lecture Topics */}
-                    <td className="px-4 py-4 border-r border-gray-300 dark:border-gray-600">
+                    <td className="px-4 py-4 border-r border-slate-200">
                       <div className="space-y-1">
                         {lecture.topics.map((topic, idx) => (
-                          <div key={idx} className="text-sm text-gray-900 dark:text-white font-medium">
+                          <div key={idx} className="text-sm text-slate-900 font-medium">
                             {topic}
                           </div>
                         ))}
@@ -209,7 +209,7 @@ export function LecturesPage() {
                     </td>
 
                     {/* Resources */}
-                    <td className="px-4 py-4 border-r border-gray-300 dark:border-gray-600">
+                    <td className="px-4 py-4 border-r border-slate-200">
                       <ResourcesPagination
                         posts={homeworkPosts}
                         homeworkKey={lecture.homework}
@@ -218,7 +218,7 @@ export function LecturesPage() {
 
                     {/* Homework */}
                     <td className="px-4 py-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-md border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white text-xs font-bold uppercase">
+                      <span className="inline-flex items-center px-3 py-1 rounded-md border border-slate-300 text-slate-900 text-xs font-bold uppercase">
                         {lecture.homework}
                       </span>
                     </td>
